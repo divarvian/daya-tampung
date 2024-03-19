@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAYA TAMPUNG - SNBT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
+    rel="stylesheet"
+  >
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #f5f5f5;
+    }
+    
+    .search-container {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">DAYA TAMPUNG (S1)</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        Data diambil dari laman <a href="https://sidata-ptn-snpmb.bppp.kemdikbud.go.id/ptn_sb.php" class="alert-link" title="Kementerian Pendidikan dan Kebudayaan">KEMDIKBUD</a>.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="search-container">
+            <input type="text" id="searchInput" class="form-control mb-3" placeholder="Cari PTN">
+          </div>
+          <div id="universityData" class="table-responsive"></div>
+          <div class="text-center mt-3">
+            <button id="prevBtn" class="btn btn-primary">Sebelumnya</button>
+            <button id="nextBtn" class="btn btn-primary">Selanjutnya</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer style="text-align: center; margin-top: 20px;">
+    &copy; DivaArvian 2024. All rights reserved.
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <script>
+    const url = 'https://divarvian.github.io/daya-tampung/dataProdiPTN2024.json';
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const universities = {};
+        Object.values(data).forEach(university => {
+          const universityName = university.nama;
+          const prodiArray = university.prodi;
+          if (!universities[universityName]) {
+            universities[universityName] = [];
+          }
+          prodiArray.forEach(prodi => {
+            universities[universityName].push(prodi);
+            if (prodi['Jumlah Peminat']['2024']) {
+              prodi['Jumlah Peminat']['2024'] = 0;
+            }
+          });
+        });
+
+        const universityDiv = document.getElementById('universityData');
+        const searchInput = document.getElementById('searchInput');
+        let currentPage = 0;
+        const pageSize = 5;
+
+        function renderTable(page, searchTerm = '') {
+          const table = document.createElement('table');
+          table.className = 'table table-striped table-bordered table-hover';
+
+          const tableHeader = document.createElement('thead');
+          const headerRow = document.createElement('tr');
+          const universityNameHeader = document.createElement('th');
+          universityNameHeader.textContent = 'PTN';
+          headerRow.appendChild(universityNameHeader);
+          const prodiHeader = document.createElement('th');
+          prodiHeader.textContent = 'Program Studi';
+          headerRow.appendChild(prodiHeader);
+          Object.keys(Object.values(universities)[0][0]['Jumlah Peminat']).forEach(year => {
+            const yearHeader = document.createElement('th');
+            yearHeader.setAttribute('colspan', '2');
+            yearHeader.textContent = year;
+            headerRow.appendChild(yearHeader);
+            const peminatHeader = document.createElement('th');
+            peminatHeader.textContent = 'Jumlah Peminat';
+            yearHeader.appendChild(peminatHeader);
+            const tampungHeader = document.createElement('th');
+            tampungHeader.textContent = 'Daya Tampung';
+            yearHeader.appendChild(tampungHeader);
+          });
+          tableHeader.appendChild(headerRow);
+          table.appendChild(tableHeader);
+
+          const tableBody = document.createElement('tbody');
+
+          const filteredUniversities = Object.entries(universities).filter(([universityName, prodiArray]) => {
+            return universityName.toLowerCase().includes(searchTerm.toLowerCase());
+          });
+
+          const startIndex = page * pageSize;
+          const endIndex = Math.min(startIndex + pageSize, filteredUniversities.length);
+
+          filteredUniversities.slice(startIndex, endIndex).forEach(([universityName, prodiArray]) => {
+            prodiArray.forEach((prodi, index) => {
+              const row = document.createElement('tr');
+              if (index === 0) {
+                const universityNameCell = document.createElement('td');
+                universityNameCell.textContent = universityName;
+                universityNameCell.rowSpan = prodiArray.length;
+                row.appendChild(universityNameCell);
+              }
+              const prodiCell = document.createElement('td');
+              prodiCell.textContent = prodi[Object.keys(prodi)[0]];
+              row.appendChild(prodiCell);
+              Object.entries(prodi['Jumlah Peminat']).forEach(([year, peminat]) => {
+                const tampung = prodi['Daya Tampung'][year];
+                const peminatCell = document.createElement('td');
+                peminatCell.textContent = peminat;
+                row.appendChild(peminatCell);
+                const tampungCell = document.createElement('td');
+                tampungCell.textContent = tampung;
+                row.appendChild(tampungCell);
+              });
+              tableBody.appendChild(row);
+            });
+          });
+
+          table.appendChild(tableBody);
+          universityDiv.innerHTML = '';
+          universityDiv.appendChild(table);
+        }
+
+        renderTable(currentPage);
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+          if (currentPage > 0) {
+            currentPage--;
+            renderTable(currentPage, searchInput.value);
+          }
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+          if (currentPage < Math.ceil(Object.keys(universities).length / pageSize) - 1) {
+            currentPage++;
+            renderTable(currentPage, searchInput.value);
+          }
+        });
+
+        searchInput.addEventListener('input', () => {
+          currentPage = 0;
+          renderTable(currentPage, searchInput.value);
+        });
+      })
+      .catch(error => console.log('Error fetching data:', error));
+  </script>
+
+</body>
+
+</html>
