@@ -1,0 +1,50 @@
+[
+      {
+        "PTN": "Universitas Brawijaya",
+        "Jenjang": "S1",
+        "Program Studi": {
+          "Teknik Komputer": {
+            "2019": {"Jumlah Peminat": 120, "Daya Tampung": 100},
+            "2020": {"Jumlah Peminat": 150, "Daya Tampung": 100},
+            "2021": {"Jumlah Peminat": 180, "Daya Tampung": 100},
+            "2022": {"Jumlah Peminat": 200, "Daya Tampung": 100},
+            "2023": {"Jumlah Peminat": 220, "Daya Tampung": 100},
+            "2024": {"Jumlah Peminat": 240, "Daya Tampung": 100},
+            "Keketatan": "Tinggi"
+          },
+          "Teknik Informatika": {
+            "2019": {"Jumlah Peminat": 120, "Daya Tampung": 100},
+            "2020": {"Jumlah Peminat": 150, "Daya Tampung": 100},
+            "2021": {"Jumlah Peminat": 180, "Daya Tampung": 100},
+            "2022": {"Jumlah Peminat": 200, "Daya Tampung": 100},
+            "2023": {"Jumlah Peminat": 220, "Daya Tampung": 100},
+            "2024": {"Jumlah Peminat": 240, "Daya Tampung": 100},
+            "Keketatan": "Tinggi"
+          }
+        }
+      },
+      {
+        "PTN": "Universitas Sriwijaya",
+        "Jenjang": "S1",
+        "Program Studi": {
+          "Teknik Komputer": {
+            "2019": {"Jumlah Peminat": 120, "Daya Tampung": 100},
+            "2020": {"Jumlah Peminat": 150, "Daya Tampung": 100},
+            "2021": {"Jumlah Peminat": 180, "Daya Tampung": 100},
+            "2022": {"Jumlah Peminat": 200, "Daya Tampung": 100},
+            "2023": {"Jumlah Peminat": 220, "Daya Tampung": 100},
+            "2024": {"Jumlah Peminat": 240, "Daya Tampung": 100},
+            "Keketatan": "Tinggi"
+          },
+          "Teknik Informatika": {
+            "2019": {"Jumlah Peminat": 120, "Daya Tampung": 100},
+            "2020": {"Jumlah Peminat": 150, "Daya Tampung": 100},
+            "2021": {"Jumlah Peminat": 180, "Daya Tampung": 100},
+            "2022": {"Jumlah Peminat": 200, "Daya Tampung": 100},
+            "2023": {"Jumlah Peminat": 220, "Daya Tampung": 100},
+            "2024": {"Jumlah Peminat": 240, "Daya Tampung": 100},
+            "Keketatan": "Tinggi"
+          }
+        }
+      }
+    ]
