@@ -143,6 +143,8 @@
                 }
               });
 
+              prodi['jumlahPeminat'][lastYear] = "NYK";
+              
               const peminatLastYear = tahunData[lastYear - 1]['jumlahPeminat'];
               const dayaTampungLastYear = tahunData[lastYear - 1]['dayaTampung'];
               prodi['keketatan'] = calculateKeketatan(peminatLastYear, dayaTampungLastYear);
