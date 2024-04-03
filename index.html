@@ -5,14 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DAYA TAMPUNG - SNBT</title>
+  <!-- Menghubungkan dengan font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
   <!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Stylesheet khusus -->
   <style>
     body {
       font-family: 'Quicksand', sans-serif;
@@ -22,14 +21,19 @@
     .search-container {
       margin-bottom: 10px;
     }
+
+    th {
+      text-align: center;
+    }
   </style>
 </head>
 
 <body>
-
+  <!-- Header -->
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">DAYA TAMPUNG (S1)</a>
+      <!-- Tombol hamburger untuk tampilan mobile -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -56,6 +60,7 @@
             </div>
           </li>
         </ul>
+        <!-- Form pencarian -->
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -64,20 +69,26 @@
     </nav>
   </header>
 
+  <!-- Konten utama -->
   <main>
     <div class="container">
+      <!-- Pesan informasi -->
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        Data diambil dari laman <a href="https://sidata-ptn-snpmb.bppp.kemdikbud.go.id/ptn_sb.php" class="alert-link" title="Kementerian Pendidikan dan Kebudayaan">KEMDIKBUD</a>.
+        Data diambil dari laman <a href="https://sidata-ptn-snpmb.bppp.kemdikbud.go.id/ptn_sb.php" class="alert-link"
+          title="Kementerian Pendidikan dan Kebudayaan">KEMDIKBUD</a>.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="row">
         <div class="col">
+          <!-- Kotak pencarian -->
           <div class="search-container">
             <input type="text" id="searchInput" class="form-control mb-3" placeholder="Cari PTN">
           </div>
+          <!-- Tabel hasil pencarian -->
           <div id="universityData" class="table-responsive"></div>
+          <!-- Tombol navigasi -->
           <div class="text-center mt-3">
             <button id="prevBtn" class="btn btn-primary">Sebelumnya</button>
             <button id="nextBtn" class="btn btn-primary">Selanjutnya</button>
@@ -87,6 +98,7 @@
     </div>
   </main>
 
+  <!-- Footer -->
   <footer style="text-align: center; margin-top: 20px;">
     &copy; DivaArvian 2024. All rights reserved.
   </footer>
@@ -95,25 +107,47 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
+
+  <!-- JavaScript kustom -->
   <script>
-    const url = 'https://divarvian.github.io/daya-tampung/dataProdiPTN2024.json';
+    const calculateKeketatan = (peminat, tampung) => {
+      if (tampung === 0) return 'NaN%';
+      const keketatan = (tampung / peminat) * 100;
+      return keketatan.toFixed(2) + '%';
+    };
+
+    const url = 'https://raw.githubusercontent.com/divarvian/daya-tampung/main/result_data.json';
 
     fetch(url)
       .then(response => response.json())
       .then(data => {
         const universities = {};
-        Object.values(data).forEach(university => {
-          const universityName = university.nama;
-          const prodiArray = university.prodi;
-          if (!universities[universityName]) {
-            universities[universityName] = [];
-          }
-          prodiArray.forEach(prodi => {
-            universities[universityName].push(prodi);
-            if (prodi['Jumlah Peminat']['2024']) {
-              prodi['Jumlah Peminat']['2024'] = 0;
-            }
+        let lastYear = 0;
+
+        data.forEach(item => {
+          const universityName = item.namaPTN;
+          const prodiArray = Object.entries(item['programStudi']);
+
+          if (!universities[universityName]) universities[universityName] = [];
+
+          prodiArray.forEach(([jenjang, prodiData]) => {
+            Object.entries(prodiData).forEach(([prodiName, tahunData]) => {
+              const prodi = { 'programStudi': prodiName, jenjang: jenjang };
+              Object.keys(tahunData).forEach(year => {
+                if (!isNaN(year)) {
+                  prodi['jumlahPeminat'] = prodi['jumlahPeminat'] || {};
+                  prodi['jumlahPeminat'][year] = tahunData[year]['jumlahPeminat'];
+                  prodi['dayaTampung'] = prodi['dayaTampung'] || {};
+                  prodi['dayaTampung'][year] = tahunData[year]['dayaTampung'];
+                  lastYear = year;
+                }
+              });
+
+              const peminatLastYear = tahunData[lastYear - 1]['jumlahPeminat'];
+              const dayaTampungLastYear = tahunData[lastYear - 1]['dayaTampung'];
+              prodi['keketatan'] = calculateKeketatan(peminatLastYear, dayaTampungLastYear);
+              universities[universityName].push(prodi);
+            });
           });
         });
 
@@ -122,42 +156,52 @@
         let currentPage = 0;
         const pageSize = 5;
 
-        function renderTable(page, searchTerm = '') {
+        const renderTable = (page, searchTerm = '') => {
           const table = document.createElement('table');
           table.className = 'table table-striped table-bordered table-hover';
 
-          const tableHeader = document.createElement('thead');
-          const headerRow = document.createElement('tr');
-          const universityNameHeader = document.createElement('th');
-          universityNameHeader.textContent = 'PTN';
-          headerRow.appendChild(universityNameHeader);
-          const prodiHeader = document.createElement('th');
-          prodiHeader.textContent = 'Program Studi';
-          headerRow.appendChild(prodiHeader);
-          Object.keys(Object.values(universities)[0][0]['Jumlah Peminat']).forEach(year => {
-            const yearHeader = document.createElement('th');
-            yearHeader.setAttribute('colspan', '2');
-            yearHeader.textContent = year;
-            headerRow.appendChild(yearHeader);
-            const peminatHeader = document.createElement('th');
-            peminatHeader.textContent = 'Jumlah Peminat';
-            yearHeader.appendChild(peminatHeader);
-            const tampungHeader = document.createElement('th');
-            tampungHeader.textContent = 'Daya Tampung';
-            yearHeader.appendChild(tampungHeader);
+          const uniqueYears = new Set();
+          Object.values(universities).forEach(prodiArray => {
+            prodiArray.forEach(prodi => {
+              Object.keys(prodi['jumlahPeminat']).forEach(year => {
+                if (!isNaN(year)) uniqueYears.add(year);
+              });
+            });
           });
+          const sortedYears = [...uniqueYears].sort();
+          const headerRow = document.createElement('tr');
+          headerRow.innerHTML = `
+            <th rowspan="2">PTN</th>
+            <th rowspan="2">Program Studi</th>
+            <th rowspan="2">Jenjang</th>
+          `;
+          sortedYears.forEach(year => {
+            headerRow.innerHTML += `
+              <th colspan="2">${year}</th>
+            `;
+          });
+          headerRow.innerHTML += `
+            <th rowspan="2">Keketatan</th>
+          `;
+          const tableHeader = document.createElement('thead');
           tableHeader.appendChild(headerRow);
+
+          const peminatHeaderRow = document.createElement('tr');
+          sortedYears.forEach(year => {
+            peminatHeaderRow.innerHTML += `
+              <th>Jumlah Peminat</th>
+              <th>Daya Tampung</th>
+            `;
+          });
+          tableHeader.appendChild(peminatHeaderRow);
           table.appendChild(tableHeader);
 
           const tableBody = document.createElement('tbody');
-
           const filteredUniversities = Object.entries(universities).filter(([universityName, prodiArray]) => {
             return universityName.toLowerCase().includes(searchTerm.toLowerCase());
           });
-
           const startIndex = page * pageSize;
           const endIndex = Math.min(startIndex + pageSize, filteredUniversities.length);
-
           filteredUniversities.slice(startIndex, endIndex).forEach(([universityName, prodiArray]) => {
             prodiArray.forEach((prodi, index) => {
               const row = document.createElement('tr');
@@ -168,10 +212,14 @@
                 row.appendChild(universityNameCell);
               }
               const prodiCell = document.createElement('td');
-              prodiCell.textContent = prodi[Object.keys(prodi)[0]];
+              prodiCell.textContent = prodi['programStudi'];
               row.appendChild(prodiCell);
-              Object.entries(prodi['Jumlah Peminat']).forEach(([year, peminat]) => {
-                const tampung = prodi['Daya Tampung'][year];
+              const jenjangCell = document.createElement('td');
+              jenjangCell.textContent = prodi['jenjang'];
+              row.appendChild(jenjangCell);
+              sortedYears.forEach(year => {
+                const peminat = prodi['jumlahPeminat'][year] || 0;
+                const tampung = prodi['dayaTampung'][year] || 0;
                 const peminatCell = document.createElement('td');
                 peminatCell.textContent = peminat;
                 row.appendChild(peminatCell);
@@ -179,6 +227,9 @@
                 tampungCell.textContent = tampung;
                 row.appendChild(tampungCell);
               });
+              const keketatanCell = document.createElement('td');
+              keketatanCell.textContent = prodi['keketatan'];
+              row.appendChild(keketatanCell);
               tableBody.appendChild(row);
             });
           });
@@ -186,7 +237,7 @@
           table.appendChild(tableBody);
           universityDiv.innerHTML = '';
           universityDiv.appendChild(table);
-        }
+        };
 
         renderTable(currentPage);
 
@@ -211,7 +262,6 @@
       })
       .catch(error => console.log('Error fetching data:', error));
   </script>
-
 </body>
 
 </html>
