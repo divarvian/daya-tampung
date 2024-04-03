@@ -1,6 +1,7 @@
 {
   "111": {
     "nama": "UNIVERSITAS SYIAH KUALA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "111001": {
         "nama": "PENDIDIKAN DOKTER HEWAN",
@@ -456,6 +457,7 @@
   },
   "112": {
     "nama": "UNIVERSITAS MALIKUSSALEH",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "112001": {
         "nama": "TEKNIK SIPIL",
@@ -665,6 +667,7 @@
   },
   "113": {
     "nama": "UNIVERSITAS TEUKU UMAR",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "113001": {
         "nama": "TEKNIK SIPIL",
@@ -808,6 +811,7 @@
   },
   "114": {
     "nama": "UNIVERSITAS SAMUDRA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "114001": {
         "nama": "AGROTEKNOLOGI",
@@ -969,6 +973,7 @@
   },
   "115": {
     "nama": "ISBI ACEH",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "115001": {
         "nama": "SENI KARAWITAN",
@@ -1028,6 +1033,7 @@
   },
   "116": {
     "nama": "UNIVERSITAS ISLAM NEGERI AR-RANIRY",
+    "jenis": "PT KIN",
     "prodi": {
       "116001": {
         "nama": "PENDIDIKAN TEKNIK ELEKTRO",
@@ -1129,6 +1135,7 @@
   },
   "121": {
     "nama": "UNIVERSITAS SUMATERA UTARA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "121001": {
         "nama": "PENDIDIKAN DOKTER",
@@ -1500,6 +1507,7 @@
   },
   "122": {
     "nama": "UNIVERSITAS NEGERI MEDAN",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "122001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -1835,6 +1843,7 @@
   },
   "123": {
     "nama": "UNIVERSITAS ISLAM NEGERI SUMATERA UTARA",
+    "jenis": "PT KIN",
     "prodi": {
       "123001": {
         "nama": "ILMU KOMPUTER",
@@ -1906,6 +1915,7 @@
   },
   "124": {
     "nama": "UIN SYEKH ALI HASAN AHMAD ADDARY PADANGSIDIMPUAN",
+    "jenis": "PT KIN",
     "prodi": {
       "124001": {
         "nama": "BISNIS DIGITAL",
@@ -1929,6 +1939,7 @@
   },
   "131": {
     "nama": "UNIVERSITAS RIAU",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "131001": {
         "nama": "FISIKA",
@@ -2318,6 +2329,7 @@
   },
   "132": {
     "nama": "UNIVERSITAS ISLAM NEGERI SULTAN SYARIF KASIM",
+    "jenis": "PT KIN",
     "prodi": {
       "132001": {
         "nama": "PETERNAKAN",
@@ -2437,6 +2449,7 @@
   },
   "133": {
     "nama": "UNIVERSITAS MARITIM RAJA ALI HAJI",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "133001": {
         "nama": "TEKNIK ELEKTRO",
@@ -2598,6 +2611,7 @@
   },
   "141": {
     "nama": "UNIVERSITAS ANDALAS",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "141001": {
         "nama": "AGRIBISNIS",
@@ -2939,6 +2953,7 @@
   },
   "142": {
     "nama": "UNIVERSITAS NEGERI PADANG",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "142001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -3496,6 +3511,7 @@
   },
   "143": {
     "nama": "ISI PADANG PANJANG",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "143001": {
         "nama": "SENI KARAWITAN",
@@ -3633,6 +3649,7 @@
   },
   "144": {
     "nama": "UNIVERSITAS ISLAM NEGERI IMAM BONJOL PADANG",
+    "jenis": "PT KIN",
     "prodi": {
       "144001": {
         "nama": "MATEMATIKA",
@@ -3650,6 +3667,7 @@
   },
   "151": {
     "nama": "UNIVERSITAS JAMBI",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "151001": {
         "nama": "PEND. KIMIA",
@@ -4051,6 +4069,7 @@
   },
   "152": {
     "nama": "UNIVERSITAS ISLAM NEGERI SULTAN THAHA SAIFUDDIN JAMBI",
+    "jenis": "PT KIN",
     "prodi": {
       "152001": {
         "nama": "SISTEM INFORMASI",
@@ -4098,6 +4117,7 @@
   },
   "161": {
     "nama": "UNIVERSITAS BENGKULU",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "161001": {
         "nama": "AGROEKOTEKNOLOGI",
@@ -4403,6 +4423,7 @@
   },
   "171": {
     "nama": "UNIVERSITAS SRIWIJAYA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "171001": {
         "nama": "TEKNIK SIPIL",
@@ -4774,6 +4795,7 @@
   },
   "172": {
     "nama": "UNIVERSITAS ISLAM NEGERI RADEN FATAH",
+    "jenis": "PT KIN",
     "prodi": {
       "172001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -4833,6 +4855,7 @@
   },
   "181": {
     "nama": "UNIVERSITAS BANGKA BELITUNG",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "181001": {
         "nama": "TEKNIK MESIN",
@@ -5000,6 +5023,7 @@
   },
   "191": {
     "nama": "UNIVERSITAS LAMPUNG",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "191001": {
         "nama": "AGROTEKNOLOGI",
@@ -5479,6 +5503,7 @@
   },
   "192": {
     "nama": "INSTITUT TEKNOLOGI SUMATERA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "192001": {
         "nama": "TEKNIK GEOMATIKA",
@@ -5730,6 +5755,7 @@
   },
   "193": {
     "nama": "UNIVERSITAS ISLAM NEGERI RADEN INTAN LAMPUNG",
+    "jenis": "PT KIN",
     "prodi": {
       "193001": {
         "nama": "BIOLOGI",
@@ -5753,6 +5779,7 @@
   },
   "194": {
     "nama": "UIN MAHMUD YUNUS BATUSANGKAR",
+    "jenis": "PT KIN",
     "prodi": {
       "194001": {
         "nama": "MATEMATIKA",
@@ -5776,6 +5803,7 @@
   },
   "195": {
     "nama": "UIN SJECH M. DJAMIL DJAMBEK BUKITTINGGI",
+    "jenis": "PT KIN",
     "prodi": {
       "195001": {
         "nama": "STATISTIKA",
@@ -5805,6 +5833,7 @@
   },
   "221": {
     "nama": "POLITEKNIK NEGERI LHOKSEUMAWE",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "221001": {
         "nama": "TEKNOLOGI REKAYASA KONSTRUKSI JALAN DAN JEMBATAN",
@@ -5966,6 +5995,7 @@
   },
   "222": {
     "nama": "POLITEKNIK NEGERI MEDAN",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "222001": {
         "nama": "TEKNIK PERANCANGAN JALAN DAN JEMBATAN",
@@ -6121,6 +6151,7 @@
   },
   "231": {
     "nama": "POLITEKNIK NEGERI BATAM",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "231001": {
         "nama": "TEKNIK MEKATRONIKA",
@@ -6252,6 +6283,7 @@
   },
   "232": {
     "nama": "POLITEKNIK NEGERI BENGKALIS",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "232001": {
         "nama": "TEKNIK LISTRIK",
@@ -6365,6 +6397,7 @@
   },
   "241": {
     "nama": "POLITEKNIK NEGERI PADANG",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "241001": {
         "nama": "TEKNIK ELEKTRONIKA INDUSTRI",
@@ -6568,6 +6601,7 @@
   },
   "242": {
     "nama": "POLITEKNIK PERTANIAN NEGERI PAYAKUMBUH",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "242001": {
         "nama": "PENGELOLAAN AGRIBISNIS",
@@ -6657,6 +6691,7 @@
   },
   "271": {
     "nama": "POLITEKNIK NEGERI SRIWIJAYA",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "271001": {
         "nama": "PERANCANGAN JALAN DAN JEMBATAN",
@@ -6866,6 +6901,7 @@
   },
   "281": {
     "nama": "POLITEKNIK MANUFAKTUR NEGERI BANGKA BELITUNG",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "281001": {
         "nama": "TEKNIK MESIN DAN MANUFAKTUR",
@@ -6925,6 +6961,7 @@
   },
   "291": {
     "nama": "POLITEKNIK NEGERI LAMPUNG",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "291001": {
         "nama": "TEKNOLOGI PERBENIHAN",
@@ -7110,6 +7147,7 @@
   },
   "311": {
     "nama": "UNIVERSITAS SULTAN AGENG TIRTAYASA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "311001": {
         "nama": "TEKNIK MESIN",
@@ -7403,6 +7441,7 @@
   },
   "312": {
     "nama": "UNIVERSITAS ISLAM NEGERI SULTAN MAULANA HASANUDDIN BANTEN",
+    "jenis": "PT KIN",
     "prodi": {
       "312001": {
         "nama": "FISIKA",
@@ -7438,6 +7477,7 @@
   },
   "321": {
     "nama": "UNIVERSITAS INDONESIA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "321001": {
         "nama": "PENDIDIKAN DOKTER",
@@ -7917,6 +7957,7 @@
   },
   "322": {
     "nama": "UNIVERSITAS ISLAM NEGERI JAKARTA",
+    "jenis": "PT KIN",
     "prodi": {
       "322001": {
         "nama": "SOSIAL EKONOMI PERTANIAN / AGRIBISNIS",
@@ -8078,6 +8119,7 @@
   },
   "323": {
     "nama": "UNIVERSITAS NEGERI JAKARTA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "323001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -8539,6 +8581,7 @@
   },
   "324": {
     "nama": "UPN \"VETERAN\" JAKARTA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "324001": {
         "nama": "TEKNIK MESIN",
@@ -8700,6 +8743,7 @@
   },
   "331": {
     "nama": "UNIVERSITAS SINGAPERBANGSA KARAWANG",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "331001": {
         "nama": "AGROTEKNOLOGI",
@@ -8879,6 +8923,7 @@
   },
   "332": {
     "nama": "INSTITUT TEKNOLOGI BANDUNG",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "332001": {
         "nama": "FAKULTAS ILMU DAN TEKNOLOGI KEBUMIAN (FITB)",
@@ -9028,6 +9073,7 @@
   },
   "333": {
     "nama": "UNIVERSITAS PADJADJARAN",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "333001": {
         "nama": "PENDIDIKAN DOKTER",
@@ -9465,6 +9511,7 @@
   },
   "334": {
     "nama": "UNIVERSITAS PENDIDIKAN INDONESIA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "334001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -10088,6 +10135,7 @@
   },
   "335": {
     "nama": "ISBI BANDUNG",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "335001": {
         "nama": "TARI",
@@ -10165,6 +10213,7 @@
   },
   "336": {
     "nama": "UNIVERSITAS ISLAM NEGERI SUNAN GUNUNG DJATI",
+    "jenis": "PT KIN",
     "prodi": {
       "336002": {
         "nama": "MATEMATIKA",
@@ -10266,6 +10315,7 @@
   },
   "341": {
     "nama": "INSTITUT PERTANIAN BOGOR",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "341001": {
         "nama": "AGRIBISNIS",
@@ -10655,6 +10705,7 @@
   },
   "342": {
     "nama": "UNIVERSITAS SILIWANGI",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "342001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -10816,6 +10867,7 @@
   },
   "351": {
     "nama": "UNIVERSITAS JENDERAL SOEDIRMAN",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "351001": {
         "nama": "BIOLOGI",
@@ -11157,6 +11209,7 @@
   },
   "352": {
     "nama": "UNIVERSITAS TIDAR",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "352001": {
         "nama": "AGROTEKNOLOGI",
@@ -11324,6 +11377,7 @@
   },
   "353": {
     "nama": "UNIVERSITAS SEBELAS MARET",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "353001": {
         "nama": "KEDOKTERAN",
@@ -11887,6 +11941,7 @@
   },
   "354": {
     "nama": "ISI SURAKARTA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "354001": {
         "nama": "TARI",
@@ -11994,6 +12049,7 @@
   },
   "355": {
     "nama": "UNIVERSITAS DIPONEGORO",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "355001": {
         "nama": "KESEHATAN MASYARAKAT",
@@ -12395,6 +12451,7 @@
   },
   "356": {
     "nama": "UNIVERSITAS NEGERI SEMARANG",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "356001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -12850,6 +12907,7 @@
   },
   "357": {
     "nama": "UNIVERSITAS ISLAM NEGERI WALISONGO",
+    "jenis": "PT KIN",
     "prodi": {
       "357005": {
         "nama": "GIZI",
@@ -12927,6 +12985,7 @@
   },
   "358": {
     "nama": "UNIVERSITAS ISLAM NEGERI RADEN MAS SAID SURAKARTA",
+    "jenis": "PT KIN",
     "prodi": {
       "358001": {
         "nama": "ILMU LINGKUNGAN",
@@ -12956,6 +13015,7 @@
   },
   "361": {
     "nama": "UNIVERSITAS GADJAH MADA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "361001": {
         "nama": "BIOLOGI",
@@ -13519,6 +13579,7 @@
   },
   "362": {
     "nama": "UNIVERSITAS NEGERI YOGYAKARTA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "362001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -13986,6 +14047,7 @@
   },
   "363": {
     "nama": "UPN \"VETERAN\" YOGYAKARTA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "363001": {
         "nama": "TEKNIK GEOLOGI",
@@ -14123,6 +14185,7 @@
   },
   "364": {
     "nama": "ISI YOGYAKARTA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "364001": {
         "nama": "SENI TARI",
@@ -14266,6 +14329,7 @@
   },
   "365": {
     "nama": "UNIVERSITAS ISLAM NEGERI SUNAN KALIJAGA",
+    "jenis": "PT KIN",
     "prodi": {
       "365001": {
         "nama": "MATEMATIKA",
@@ -14385,6 +14449,7 @@
   },
   "366": {
     "nama": "UIN PROFESOR KIAI HAJI SAIFUDDIN ZUHRI PURWOKERTO",
+    "jenis": "PT KIN",
     "prodi": {
       "366001": {
         "nama": "ARSITEKTUR",
@@ -14414,6 +14479,7 @@
   },
   "367": {
     "nama": "UIN SALATIGA",
+    "jenis": "PT KIN",
     "prodi": {
       "367001": {
         "nama": "BISNIS DIGITAL",
@@ -14443,6 +14509,7 @@
   },
   "368": {
     "nama": "UIN K.H. ABDURRAHMAN WAHID PEKALONGAN",
+    "jenis": "PT KIN",
     "prodi": {
       "368001": {
         "nama": "BISNIS DIGITAL",
@@ -14466,6 +14533,7 @@
   },
   "371": {
     "nama": "UNIVERSITAS JEMBER",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "371001": {
         "nama": "AGROTEKNOLOGI / AGROEKOTEKNOLOGI",
@@ -14903,6 +14971,7 @@
   },
   "372": {
     "nama": "UNIVERSITAS BRAWIJAYA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "372001": {
         "nama": "MANAJEMEN SUMBERDAYA PERAIRAN",
@@ -15406,6 +15475,7 @@
   },
   "373": {
     "nama": "UNIVERSITAS NEGERI MALANG",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "373001": {
         "nama": "PENDIDIKAN MATEMATIKA  ",
@@ -15861,6 +15931,7 @@
   },
   "374": {
     "nama": "UNIVERSITAS ISLAM NEGERI MALANG",
+    "jenis": "PT KIN",
     "prodi": {
       "374001": {
         "nama": "MATEMATIKA",
@@ -15974,6 +16045,7 @@
   },
   "381": {
     "nama": "UNIVERSITAS AIRLANGGA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "381001": {
         "nama": "KEDOKTERAN",
@@ -16333,6 +16405,7 @@
   },
   "382": {
     "nama": "INSTITUT TEKNOLOGI SEPULUH NOPEMBER",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "382001": {
         "nama": "FISIKA",
@@ -16644,6 +16717,7 @@
   },
   "383": {
     "nama": "UNIVERSITAS NEGERI SURABAYA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "383001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -17177,6 +17251,7 @@
   },
   "384": {
     "nama": "UNIVERSITAS TRUNOJOYO MADURA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "384001": {
         "nama": "AGROEKOTEKNOLOGI",
@@ -17350,6 +17425,7 @@
   },
   "385": {
     "nama": "UPN \"VETERAN\" JAWA TIMUR",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "385001": {
         "nama": "AGRIBISNIS",
@@ -17529,6 +17605,7 @@
   },
   "386": {
     "nama": "UNIVERSITAS ISLAM NEGERI SUNAN AMPEL SURABAYA",
+    "jenis": "PT KIN",
     "prodi": {
       "386001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -17666,6 +17743,7 @@
   },
   "421": {
     "nama": "POLITEKNIK NEGERI JAKARTA",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "421001": {
         "nama": "TEKNIK KONSTRUKSI GEDUNG",
@@ -17881,6 +17959,7 @@
   },
   "422": {
     "nama": "POLITEKNIK NEGERI MEDIA KREATIF",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "422001": {
         "nama": "TEKNOLOGI REKAYASA MULTIMEDIA",
@@ -18024,6 +18103,7 @@
   },
   "431": {
     "nama": "POLITEKNIK NEGERI BANDUNG",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "431001": {
         "nama": "TEKNIK PERANCANGAN JALAN DAN JEMBATAN",
@@ -18251,6 +18331,7 @@
   },
   "432": {
     "nama": "POLITEKNIK MANUFAKTUR BANDUNG",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "432001": {
         "nama": "TEKNOLOGI REKAYASA MANUFAKTUR",
@@ -18334,6 +18415,7 @@
   },
   "433": {
     "nama": "POLITEKNIK NEGERI INDRAMAYU",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "433001": {
         "nama": "PERANCANGAN MANUFAKTUR",
@@ -18387,6 +18469,7 @@
   },
   "434": {
     "nama": "POLITEKNIK NEGERI SUBANG",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "434001": {
         "nama": "AGROINDUSTRI",
@@ -18434,6 +18517,7 @@
   },
   "452": {
     "nama": "POLITEKNIK NEGERI SEMARANG",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "452001": {
         "nama": "TEKNIK PERAWATAN DAN PERBAIKAN GEDUNG",
@@ -18595,6 +18679,7 @@
   },
   "453": {
     "nama": "POLITEKNIK NEGERI CILACAP",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "453001": {
         "nama": "TEKNIK PENGENDALIAN PENCEMARAN LINGKUNGAN",
@@ -18666,6 +18751,7 @@
   },
   "454": {
     "nama": "POLITEKNIK MARITIM NEGERI INDONESIA",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "454004": {
         "nama": "TRANSPORTASI LAUT",
@@ -18677,6 +18763,7 @@
   },
   "471": {
     "nama": "POLITEKNIK NEGERI BANYUWANGI",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "471001": {
         "nama": "AGRIBISNIS",
@@ -18778,6 +18865,7 @@
   },
   "472": {
     "nama": "POLITEKNIK NEGERI JEMBER",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "472001": {
         "nama": "GIZI KLINIK",
@@ -18993,6 +19081,7 @@
   },
   "473": {
     "nama": "POLITEKNIK NEGERI MADIUN",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "473001": {
         "nama": "PERKERETAAPIAN",
@@ -19076,6 +19165,7 @@
   },
   "474": {
     "nama": "POLITEKNIK NEGERI MALANG",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "474001": {
         "nama": "TEKNIK JARINGAN TELEKOMUNIKASI DIGITAL",
@@ -19321,6 +19411,7 @@
   },
   "481": {
     "nama": "POLITEKNIK PERKAPALAN NEGERI SURABAYA",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "481001": {
         "nama": "TEKNIK KESELAMATAN DAN KESEHATAN KERJA",
@@ -19422,6 +19513,7 @@
   },
   "482": {
     "nama": "POLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "482001": {
         "nama": "TEKNIK ELEKTRONIKA",
@@ -19547,6 +19639,7 @@
   },
   "483": {
     "nama": "POLITEKNIK NEGERI MADURA",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "483001": {
         "nama": "TEKNIK MESIN ALAT BERAT",
@@ -19594,6 +19687,7 @@
   },
   "511": {
     "nama": "UNIVERSITAS TANJUNGPURA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "511001": {
         "nama": "AGRIBISNIS",
@@ -20013,6 +20107,7 @@
   },
   "515": {
     "nama": "POLITEKNIK NEGERI PONTIANAK",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "515001": {
         "nama": "PERENCANAAN PERUMAHAN & PEMUKIMAN",
@@ -20222,6 +20317,7 @@
   },
   "516": {
     "nama": "POLITEKNIK NEGERI KETAPANG",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "516001": {
         "nama": "TEKNOLOGI PRODUKSI TANAMAN PERKEBUNAN",
@@ -20275,6 +20371,7 @@
   },
   "517": {
     "nama": "POLITEKNIK NEGERI SAMBAS",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "517001": {
         "nama": "AGROINDUSTRI PANGAN",
@@ -20340,6 +20437,7 @@
   },
   "521": {
     "nama": "UNIVERSITAS PALANGKARAYA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "521001": {
         "nama": "ILMU SOSIAL EKONOMI PERTANIAN (AGRIBISNIS)",
@@ -20609,6 +20707,7 @@
   },
   "531": {
     "nama": "UNIVERSITAS LAMBUNG MANGKURAT",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "531001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -21022,6 +21121,7 @@
   },
   "532": {
     "nama": "UNIVERSITAS ISLAM NEGERI ANTASARI BANJARMASIN",
+    "jenis": "PT KIN",
     "prodi": {
       "532001": {
         "nama": "TEKNOLOGI INFORMASI",
@@ -21033,6 +21133,7 @@
   },
   "536": {
     "nama": "POLITEKNIK NEGERI BANJARMASIN",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "536001": {
         "nama": "TEKNIK BANGUNAN RAWA",
@@ -21158,6 +21259,7 @@
   },
   "537": {
     "nama": "POLITEKNIK NEGERI TANAH LAUT",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "537001": {
         "nama": "TEKNOLOGI REKAYASA KOMPUTER JARINGAN",
@@ -21223,6 +21325,7 @@
   },
   "541": {
     "nama": "UNIVERSITAS MULAWARMAN",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "541001": {
         "nama": "AGROEKOTEKNOLOGI",
@@ -21624,6 +21727,7 @@
   },
   "542": {
     "nama": "INSTITUT TEKNOLOGI KALIMANTAN",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "542001": {
         "nama": "FISIKA",
@@ -21761,6 +21865,7 @@
   },
   "551": {
     "nama": "UNIVERSITAS BORNEO TARAKAN",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "551001": {
         "nama": "TEKNIK ELEKTRO",
@@ -21904,6 +22009,7 @@
   },
   "552": {
     "nama": "POLITEKNIK NEGERI NUNUKAN",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "552001": {
         "nama": "ADMINISTRASI BISNIS",
@@ -21933,6 +22039,7 @@
   },
   "561": {
     "nama": "POLITEKNIK PERTANIAN NEGERI SAMARINDA",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "561001": {
         "nama": "PENGELOLAAN PERKEBUNAN",
@@ -22010,6 +22117,7 @@
   },
   "562": {
     "nama": "POLITEKNIK NEGERI SAMARINDA",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "562001": {
         "nama": "TEKNIK MESIN PRODUKSI DAN PERAWATAN",
@@ -22171,6 +22279,7 @@
   },
   "563": {
     "nama": "POLITEKNIK NEGERI BALIKPAPAN",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "563001": {
         "nama": "TEKNOLOGI REKAYASA KONSTRUKSI JALAN DAN JEMBATAN",
@@ -22230,6 +22339,7 @@
   },
   "571": {
     "nama": "UIN SULTAN AJI MUHAMMAD IDRIS SAMARINDA",
+    "jenis": "PT KIN",
     "prodi": {
       "571001": {
         "nama": "SISTEM INFORMASI",
@@ -22241,6 +22351,7 @@
   },
   "611": {
     "nama": "UNIVERSITAS UDAYANA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "611001": {
         "nama": "KEDOKTERAN",
@@ -22558,6 +22669,7 @@
   },
   "612": {
     "nama": "UNIVERSITAS PENDIDIKAN GANESHA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "612001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -22875,6 +22987,7 @@
   },
   "613": {
     "nama": "ISI DENPASAR",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "613001": {
         "nama": "TARI",
@@ -22970,6 +23083,7 @@
   },
   "617": {
     "nama": "POLITEKNIK NEGERI BALI",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "617001": {
         "nama": "MANAJEMEN PROYEK KONSTRUKSI",
@@ -23137,6 +23251,7 @@
   },
   "621": {
     "nama": "UNIVERSITAS MATARAM",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "621001": {
         "nama": "AGROEKOTEKNOLOGI",
@@ -23406,6 +23521,7 @@
   },
   "622": {
     "nama": "UNIVERSITAS ISLAM NEGERI MATARAM",
+    "jenis": "PT KIN",
     "prodi": {
       "622001": {
         "nama": "HUKUM BISNIS",
@@ -23423,6 +23539,7 @@
   },
   "631": {
     "nama": "UNIVERSITAS NUSA CENDANA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "631001": {
         "nama": "PEND. MATEMATIKA",
@@ -23722,6 +23839,7 @@
   },
   "632": {
     "nama": "UNIVERSITAS TIMOR",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "632001": {
         "nama": "AGRIBISNIS",
@@ -23823,6 +23941,7 @@
   },
   "641": {
     "nama": "POLITEKNIK NEGERI KUPANG",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "641001": {
         "nama": "PERANCANGAN JALAN DAN JEMBATAN",
@@ -23924,6 +24043,7 @@
   },
   "642": {
     "nama": "POLITEKNIK PERTANIAN NEGERI KUPANG",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "642001": {
         "nama": "PENYULUHAN PERTANIAN LAHAN KERING",
@@ -24007,6 +24127,7 @@
   },
   "711": {
     "nama": "UNIVERSITAS HASANUDDIN",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "711001": {
         "nama": "MATEMATIKA",
@@ -24498,6 +24619,7 @@
   },
   "712": {
     "nama": "UNIVERSITAS NEGERI MAKASSAR",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "712001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -25043,6 +25165,7 @@
   },
   "713": {
     "nama": "UNIVERSITAS ISLAM NEGERI ALAUDDIN",
+    "jenis": "PT KIN",
     "prodi": {
       "713001": {
         "nama": "MATEMATIKA",
@@ -25144,6 +25267,7 @@
   },
   "716": {
     "nama": "POLITEKNIK NEGERI UJUNG PANDANG",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "716001": {
         "nama": "PERANCANGAN BANGUNAN GEDUNG",
@@ -25365,6 +25489,7 @@
   },
   "717": {
     "nama": "POLITEKNIK PERTANIAN NEGERI PANGKAJENE KEPULAUAN",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "717001": {
         "nama": "AGROINDUSTRI",
@@ -25460,6 +25585,7 @@
   },
   "718": {
     "nama": "INSTITUT TEKNOLOGI BJ. HABIBIE SULAWESI SELATAN",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "718001": {
         "nama": "ILMU KOMPUTER",
@@ -25525,6 +25651,7 @@
   },
   "721": {
     "nama": "UNIVERSITAS SAM RATULANGI",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "721001": {
         "nama": "PENDIDIKAN DOKTER",
@@ -25818,6 +25945,7 @@
   },
   "722": {
     "nama": "UNIVERSITAS NEGERI MANADO",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "722001": {
         "nama": "PEND. BIOLOGI",
@@ -26129,6 +26257,7 @@
   },
   "727": {
     "nama": "POLITEKNIK NEGERI MANADO",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "727001": {
         "nama": "KONSTRUKSI BANGUNAN GEDUNG",
@@ -26254,6 +26383,7 @@
   },
   "728": {
     "nama": "POLITEKNIK NEGERI NUSA UTARA",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "728001": {
         "nama": "KEPERAWATAN",
@@ -26289,6 +26419,7 @@
   },
   "731": {
     "nama": "UNIVERSITAS TADULAKO",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "731001": {
         "nama": "PEND. BIOLOGI",
@@ -26654,6 +26785,7 @@
   },
   "732": {
     "nama": "UNIVERSITAS ISLAM NEGERI DATOKARAMA PALU",
+    "jenis": "PT KIN",
     "prodi": {
       "732001": {
         "nama": "INFORMATIKA",
@@ -26677,6 +26809,7 @@
   },
   "741": {
     "nama": "UNIVERSITAS SULAWESI BARAT",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "741001": {
         "nama": "AGRIBISNIS ",
@@ -26850,6 +26983,7 @@
   },
   "751": {
     "nama": "UNIVERSITAS HALUOLEO",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "751001": {
         "nama": "AGRIBISNIS",
@@ -27347,6 +27481,7 @@
   },
   "752": {
     "nama": "UNIVERSITAS NEGERI GORONTALO",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "752001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -27730,6 +27865,7 @@
   },
   "753": {
     "nama": "UNIVERSITAS SEMBILAN BELAS NOVEMBER KOLAKA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "753001": {
         "nama": "PENDIDIKAN MATEMATIKA",
@@ -27915,6 +28051,7 @@
   },
   "811": {
     "nama": "UNIVERSITAS PATTIMURA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "811001": {
         "nama": "PEND. BIOLOGI",
@@ -28364,6 +28501,7 @@
   },
   "821": {
     "nama": "UNIVERSITAS KHAIRUN",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "821001": {
         "nama": "TEKNIK SIPIL",
@@ -28603,6 +28741,7 @@
   },
   "831": {
     "nama": "POLITEKNIK NEGERI AMBON",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "831001": {
         "nama": "TEKNIK INFORMATIKA",
@@ -28686,6 +28825,7 @@
   },
   "832": {
     "nama": "POLITEKNIK PERIKANAN NEGERI TUAL",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "832001": {
         "nama": "TEKNOLOGI KELAUTAN",
@@ -28751,6 +28891,7 @@
   },
   "911": {
     "nama": "UNIVERSITAS CENDERAWASIH",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "911001": {
         "nama": "MATEMATIKA",
@@ -29068,6 +29209,7 @@
   },
   "912": {
     "nama": "UNIVERSITAS MUSAMUS MERAUKE",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "912001": {
         "nama": "TEKNIK ELEKTRO",
@@ -29235,6 +29377,7 @@
   },
   "913": {
     "nama": "ISBI TANAH PAPUA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "913001": {
         "nama": "DESAIN KOMUNIKASI VISUAL",
@@ -29270,6 +29413,7 @@
   },
   "921": {
     "nama": "UNIVERSITAS PAPUA",
+    "jenis": "PTN AKADEMIK",
     "prodi": {
       "921001": {
         "nama": "TEKNOLOGI HASIL PERTANIAN",
@@ -29551,6 +29695,7 @@
   },
   "931": {
     "nama": "POLITEKNIK NEGERI FAKFAK",
+    "jenis": "PTN VOKASI",
     "prodi": {
       "931001": {
         "nama": "TEKNOLOGI REKAYASA KONSTRUKSI JALAN DAN JEMBATAN",
