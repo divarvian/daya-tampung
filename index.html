@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daya Tampung & Peluang SNBT (Mobile-Optimized & AI)</title>
+  <title>Daya Tampung & Peluang SNBT (Visual Ditingkatkan)</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -72,15 +72,6 @@
         border-color: #4A90E2 transparent #4A90E2 transparent;
         animation: spin 1.2s linear infinite;
     }
-    /* Perbaikan untuk tampilan mobile-first */
-    .data-label {
-        display: inline-block; /* Mobile */
-    }
-    @media (min-width: 768px) {
-        .data-label {
-            display: none; /* Desktop */
-        }
-    }
   </style>
 </head>
 
@@ -137,7 +128,6 @@
       <!-- Kontainer Data: Berubah menjadi Card View di mobile -->
       <div id="data-container">
           <div id="loadingIndicator" class="text-center py-10 flex flex-col items-center"><div class="spinner w-8 h-8 rounded-full border-4"></div><p class="mt-3 text-slate-500">Memuat data...</p></div>
-          <!-- universityData akan diisi dengan card atau tabel oleh JS -->
           <div id="universityData" class="hidden"></div>
           <div id="noResults" class="text-center py-10 hidden"><p class="text-slate-500">Data tidak ditemukan.</p></div>
       </div>
@@ -193,10 +183,8 @@
         return ((tampung / peminat) * 100).toFixed(2) + '%';
       };
 
-      // == UPDATED VARIABLES ==
       const url = 'https://divarvian.github.io/daya-tampung/result_data.json';
       const apiKey = 'AIzaSyDopkAQ6qLc6Oz7MsucwRLzraClSP8qsVg'; 
-      // =======================
 
       const universityDiv = document.getElementById('universityData');
       const searchInput = document.getElementById('searchInput');
@@ -270,7 +258,6 @@
         const sortedYears = [...uniqueYears].sort((a, b) => a - b);
         const lastYear = sortedYears[sortedYears.length-1];
 
-        // Container for desktop table
         const tableContainer = document.createElement('div');
         tableContainer.className = 'hidden md:block custom-scrollbar overflow-x-auto';
         const table = document.createElement('table');
@@ -293,7 +280,6 @@
           </thead>`;
         const tableBody = document.createElement('tbody');
         
-        // Container for mobile cards
         const cardsContainer = document.createElement('div');
         cardsContainer.className = 'md:hidden space-y-4';
 
@@ -312,9 +298,20 @@
             rowHTML += `<td class="px-6 py-4 font-medium text-slate-800">${prodi.programStudi}</td>`;
             rowHTML += `<td class="px-6 py-4 text-center">${prodi.jenjang}</td>`;
             sortedYears.forEach(year => {
-              rowHTML += `<td class="px-4 py-4 text-center">${prodi.jumlahPeminat[year] || 'N/A'}</td><td class="px-4 py-4 text-center text-green-600 font-semibold">${prodi.dayaTampung[year] || 'N/A'}</td>`;
+              const peminat = prodi.jumlahPeminat[year] || 'N/A';
+              const tampung = prodi.dayaTampung[year] || 'N/A';
+              rowHTML += `<td class="px-4 py-4 text-center">
+                              <span class="inline-flex items-center font-medium text-slate-700">
+                                <i class="fas fa-users text-slate-400 mr-2"></i> ${peminat}
+                              </span>
+                          </td>
+                          <td class="px-4 py-4 text-center">
+                              <span class="inline-flex items-center bg-green-100 text-green-800 text-sm font-bold px-2.5 py-1 rounded-full">
+                                <i class="fas fa-door-open text-green-500 mr-2"></i> ${tampung}
+                              </span>
+                          </td>`;
             });
-            rowHTML += `<td class="px-6 py-4 text-center font-bold ${prodi.keketatan === 'N/A' ? 'text-slate-500' : 'text-blue-600'}">${prodi.keketatan}</td>`;
+            rowHTML += `<td class="px-6 py-4 text-center font-bold text-lg ${prodi.keketatan === 'N/A' ? 'text-slate-500' : 'text-blue-600'}">${prodi.keketatan}</td>`;
             rowHTML += `<td class="px-6 py-4 text-center"><button class="ai-analysis-btn bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold px-3 py-1.5 rounded-md hover:from-blue-600 hover:to-indigo-700 shadow-sm hover:shadow-md transition-all text-xs" data-prodi='${JSON.stringify(prodi)}'>✨ Analisis AI</button></td>`;
             row.innerHTML = rowHTML;
 
@@ -327,22 +324,33 @@
                       <h3 class="font-bold text-md text-slate-900">${prodi.programStudi}</h3>
                       <span class="text-xs bg-slate-100 text-slate-600 font-medium px-2 py-0.5 rounded-full">${prodi.jenjang}</span>
                   </div>
-                  <div class="text-right">
-                      <div class="font-bold text-blue-600">${prodi.keketatan}</div>
+                  <div class="text-right flex-shrink-0 ml-2">
+                      <div class="font-bold text-lg text-blue-600">${prodi.keketatan}</div>
                       <div class="text-xs text-slate-500">Peluang</div>
                   </div>
               </div>
-              <div class="mt-4 pt-3 border-t border-slate-100 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+              <div class="mt-4 pt-3 border-t border-slate-100 space-y-3">
             `;
             sortedYears.forEach(year => {
                 cardHTML += `
-                <div>
-                    <span class="text-slate-500">Peminat ${year}:</span>
-                    <strong class="ml-1 text-slate-800">${prodi.jumlahPeminat[year] || 'N/A'}</strong>
-                </div>
-                <div>
-                    <span class="text-slate-500">Tampung ${year}:</span>
-                    <strong class="ml-1 text-green-600">${prodi.dayaTampung[year] || 'N/A'}</strong>
+                <div class="space-y-2">
+                    <p class="text-sm font-semibold text-slate-600">${year}</p>
+                    <div class="flex space-x-2">
+                        <div class="flex-1 text-center bg-slate-50 p-2 rounded-lg">
+                           <div class="font-bold text-md text-slate-800 flex items-center justify-center">
+                               <i class="fas fa-users mr-2 text-slate-400"></i>
+                               ${prodi.jumlahPeminat[year] || 'N/A'}
+                           </div>
+                           <div class="text-slate-500 text-xs mt-1">Peminat</div>
+                       </div>
+                       <div class="flex-1 text-center bg-green-50 p-2 rounded-lg">
+                           <div class="font-bold text-md text-green-800 flex items-center justify-center">
+                               <i class="fas fa-door-open mr-2 text-green-500"></i>
+                               ${prodi.dayaTampung[year] || 'N/A'}
+                           </div>
+                           <div class="text-green-600 text-xs mt-1">Daya Tampung</div>
+                       </div>
+                    </div>
                 </div>
                 `;
             });
