@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daya Tampung & Peluang SNBT (Visual Ditingkatkan)</title>
+  <title>Daya Tampung & Peluang SNBT (Optimized)</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -16,7 +15,6 @@
   
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 
   <style>
     /* Menggunakan font Inter sebagai default */
@@ -55,10 +53,6 @@
         transform: scale(1);
         transition: opacity 300ms, transform 300ms;
     }
-    .modal-leave {
-        opacity: 1;
-        transform: scale(1);
-    }
     .modal-leave-active {
         opacity: 0;
         transform: scale(0.95);
@@ -72,13 +66,27 @@
         border-color: #4A90E2 transparent #4A90E2 transparent;
         animation: spin 1.2s linear infinite;
     }
+    /* Ensure sticky header works well */
+    .sticky-header {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 40;
+    }
+    /* Ensure sticky column for table works */
+    .sticky-col {
+        position: -webkit-sticky;
+        position: sticky;
+        left: 0;
+        z-index: 10;
+    }
   </style>
 </head>
 
 <body class="text-slate-800">
 
   <!-- Header / Navbar -->
-  <header class="bg-white shadow-md sticky top-0 z-40">
+  <header class="bg-white shadow-md sticky-header">
     <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex-shrink-0 flex items-center space-x-2">
@@ -116,14 +124,17 @@
   <main class="container mx-auto p-4 sm:p-6 lg:p-8">
     <div class="bg-white p-4 sm:p-8 rounded-xl shadow-lg space-y-6">
       <div>
-          <h1 class="text-2xl sm:text-3xl font-bold text-slate-800">Data Daya Tampung & Peluang Lolos SNBT</h1>
-          <p class="mt-2 text-slate-500">Gunakan pencarian untuk menemukan data PTN dan dapatkan <span class="font-semibold text-blue-600">analisis AI</span> untuk strategi Anda.</p>
+        <h1 class="text-2xl sm:text-3xl font-bold text-slate-800">Data Daya Tampung & Peluang Lolos SNBT</h1>
+        <p class="mt-2 text-slate-500">Gunakan pencarian untuk menemukan data PTN dan dapatkan <span class="font-semibold text-blue-600">analisis AI</span> untuk strategi Anda.</p>
       </div>
       <div id="info-alert" class="bg-amber-100 border-l-4 border-amber-500 text-amber-800 p-4 rounded-r-lg flex justify-between items-center" role="alert">
         <p class="text-sm">Data diambil dari laman resmi <a href="https://sidata-ptn-snpmb.bppp.kemdikbud.go.id/ptn_sb.php" class="font-medium underline hover:text-amber-900" title="Kementerian" target="_blank" rel="noopener noreferrer">KEMDIKBUD</a>.</p>
         <button type="button" class="ml-4" aria-label="Close" onclick="document.getElementById('info-alert').style.display='none'"><i class="fas fa-times text-amber-600 hover:text-amber-800"></i></button>
       </div>
-      <div class="relative"><div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><i class="fas fa-search text-slate-400"></i></div><input type="text" id="searchInput" class="block w-full pl-10 pr-3 py-3 border border-slate-300 rounded-lg bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition" placeholder="Cari berdasarkan nama PTN..."></div>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><i class="fas fa-search text-slate-400"></i></div>
+        <input type="text" id="searchInput" class="block w-full pl-10 pr-3 py-3 border border-slate-300 rounded-lg bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition" placeholder="Cari berdasarkan nama PTN...">
+      </div>
       
       <!-- Kontainer Data: Berubah menjadi Card View di mobile -->
       <div id="data-container">
@@ -171,21 +182,14 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       
+      // --- KONFIGURASI ---
+      const PRODI_INITIAL_DISPLAY_LIMIT = 2; // Jumlah prodi yang ditampilkan awal
+      const API_URL = 'https://divarvian.github.io/daya-tampung/result_data.json';
+      const GEMINI_API_KEY = 'AIzaSyDopkAQ6qLc6Oz7MsucwRLzraClSP8qsVg'; // KUNCI API ANDA DISINI (jika menggunakan Gemini)
+
+      // --- ELEMEN DOM ---
       const mobileMenuButton = document.getElementById('mobile-menu-button');
       const mobileMenu = document.getElementById('mobile-menu');
-      mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        mobileMenuButton.querySelectorAll('svg').forEach(icon => icon.classList.toggle('hidden'));
-      });
-
-      const calculateKeketatan = (peminat, tampung) => {
-        if (peminat === 0 || tampung === 0 || !peminat || !tampung) return 'N/A';
-        return ((tampung / peminat) * 100).toFixed(2) + '%';
-      };
-
-      const url = 'https://divarvian.github.io/daya-tampung/result_data.json';
-      const apiKey = 'AIzaSyDopkAQ6qLc6Oz7MsucwRLzraClSP8qsVg'; 
-
       const universityDiv = document.getElementById('universityData');
       const searchInput = document.getElementById('searchInput');
       const loadingIndicator = document.getElementById('loadingIndicator');
@@ -195,20 +199,44 @@
       const nextBtn = document.getElementById('nextBtn');
       const pageInfo = document.getElementById('pageInfo');
       
+      // Elemen Modal AI
       const aiModal = document.getElementById('aiModal'), closeModalBtn = document.getElementById('closeModalBtn'),
             modalLoading = document.getElementById('modalLoading'), modalResult = document.getElementById('modalResult'),
             modalTitle = document.getElementById('modalTitle'), modalSubtitle = document.getElementById('modalSubtitle'),
             aiResponse = document.getElementById('aiResponse');
 
-      let universities = {}, allProdiData = [], filteredData = [], currentPage = 0, pageSize = 5;
+      // --- STATE APLIKASI ---
+      let universities = {};
+      let allProdiData = []; // Flat array dari semua prodi untuk kemudahan kalkulasi
+      let filteredData = [];
+      let currentPage = 0;
+      let pageSize = 5; // Jumlah universitas per halaman
+      let sortedYears = [];
 
-      fetch(url)
+      // --- FUNGSI HELPER ---
+      const calculateKeketatan = (peminat, tampung) => {
+        if (peminat === 0 || tampung === 0 || !peminat || !tampung) return 'N/A';
+        return ((tampung / peminat) * 100).toFixed(2) + '%';
+      };
+
+      const generateUniversityId = (name) => name.replace(/[^a-zA-Z0-9]/g, '-');
+      
+      // --- INISIALISASI ---
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenuButton.querySelectorAll('svg').forEach(icon => icon.classList.toggle('hidden'));
+      });
+
+      fetch(API_URL)
         .then(response => response.ok ? response.json() : Promise.reject(`HTTP error! status: ${response.status}`))
         .then(data => {
           let lastYear = 0;
+          const yearSet = new Set();
+          
           data.forEach(item => {
             const universityName = item.namaPTN;
             if (!universities[universityName]) universities[universityName] = [];
+            
             Object.entries(item.programStudi).forEach(([jenjang, prodiData]) => {
               Object.entries(prodiData).forEach(([prodiName, tahunData]) => {
                 const prodi = { ptn: universityName, programStudi: prodiName, jenjang, jumlahPeminat: {}, dayaTampung: {} };
@@ -216,16 +244,22 @@
                 yearsInProdi.forEach(year => {
                     prodi.jumlahPeminat[year] = tahunData[year].jumlahPeminat;
                     prodi.dayaTampung[year] = tahunData[year].dayaTampung;
+                    yearSet.add(year);
                     lastYear = Math.max(lastYear, parseInt(year));
                 });
-                prodi.jumlahPeminat[lastYear.toString()] = "NYK";
+                
+                prodi.jumlahPeminat[lastYear.toString()] = "NYK"; // Not Yet Known
                 const prevYear = (lastYear - 1).toString();
                 prodi.keketatan = calculateKeketatan(tahunData[prevYear]?.jumlahPeminat, tahunData[prevYear]?.dayaTampung);
+                
                 universities[universityName].push(prodi);
                 allProdiData.push(prodi);
               });
             });
           });
+          
+          sortedYears = [...yearSet].sort((a, b) => a - b);
+          
           loadingIndicator.style.display = 'none';
           universityDiv.classList.remove('hidden');
           paginationControls.classList.remove('hidden');
@@ -236,7 +270,83 @@
           loadingIndicator.innerHTML = '<p class="text-red-500">Gagal memuat data. Silakan coba lagi nanti.</p>';
         });
 
-      // == RENDER FUNCTION REBUILT FOR RESPONSIVE VIEW ==
+      // --- RENDER FUNCTIONS ---
+
+      /**
+       * Membuat HTML untuk satu baris program studi (Tampilan Desktop).
+       * @param {object} prodi - Objek data program studi.
+       * @param {string} ptnHTML - HTML untuk sel PTN (opsional, hanya untuk baris pertama).
+       * @returns {string} - String HTML untuk <tr>.
+       */
+      const createTableRowHTML = (prodi, ptnHTML = '') => {
+        let rowHTML = ptnHTML;
+        rowHTML += `<td class="px-6 py-4 font-medium text-slate-800">${prodi.programStudi}</td>`;
+        rowHTML += `<td class="px-6 py-4 text-center">${prodi.jenjang}</td>`;
+        sortedYears.forEach(year => {
+          rowHTML += `
+            <td class="px-4 py-4 text-center">
+              <span class="inline-flex items-center font-medium text-slate-700">
+                <i class="fas fa-users text-slate-400 mr-2"></i> ${prodi.jumlahPeminat[year] || 'N/A'}
+              </span>
+            </td>
+            <td class="px-4 py-4 text-center">
+              <span class="inline-flex items-center bg-green-100 text-green-800 text-sm font-bold px-2.5 py-1 rounded-full">
+                <i class="fas fa-door-open text-green-500 mr-2"></i> ${prodi.dayaTampung[year] || 'N/A'}
+              </span>
+            </td>`;
+        });
+        const keketatanColor = prodi.keketatan === 'N/A' ? 'text-slate-500' : 'text-blue-600';
+        rowHTML += `<td class="px-6 py-4 text-center font-bold text-lg ${keketatanColor}">${prodi.keketatan}</td>`;
+        rowHTML += `<td class="px-6 py-4 text-center"><button class="ai-analysis-btn bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold px-3 py-1.5 rounded-md hover:from-blue-600 hover:to-indigo-700 shadow-sm hover:shadow-md transition-all text-xs" data-prodi='${JSON.stringify(prodi)}'>✨ Analisis AI</button></td>`;
+        return `<tr class="bg-white border-b hover:bg-slate-50">${rowHTML}</tr>`;
+      };
+      
+      /**
+       * Membuat HTML untuk satu kartu program studi (Tampilan Mobile).
+       * @param {object} prodi - Objek data program studi.
+       * @returns {string} - String HTML untuk <div> kartu.
+       */
+      const createCardHTML = (prodi) => {
+          let cardHTML = `
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-bold text-md text-slate-900">${prodi.programStudi}</h3>
+                <span class="text-xs bg-slate-100 text-slate-600 font-medium px-2 py-0.5 rounded-full">${prodi.jenjang}</span>
+              </div>
+              <div class="text-right flex-shrink-0 ml-2">
+                <div class="font-bold text-lg text-blue-600">${prodi.keketatan}</div>
+                <div class="text-xs text-slate-500">Peluang</div>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 space-y-3">
+          `;
+          sortedYears.forEach(year => {
+              cardHTML += `
+                <div class="space-y-2">
+                  <p class="text-sm font-semibold text-slate-600">${year}</p>
+                  <div class="flex space-x-2">
+                    <div class="flex-1 text-center bg-slate-50 p-2 rounded-lg">
+                      <div class="font-bold text-md text-slate-800 flex items-center justify-center"><i class="fas fa-users mr-2 text-slate-400"></i>${prodi.jumlahPeminat[year] || 'N/A'}</div>
+                      <div class="text-slate-500 text-xs mt-1">Peminat</div>
+                    </div>
+                    <div class="flex-1 text-center bg-green-50 p-2 rounded-lg">
+                      <div class="font-bold text-md text-green-800 flex items-center justify-center"><i class="fas fa-door-open mr-2 text-green-500"></i>${prodi.dayaTampung[year] || 'N/A'}</div>
+                      <div class="text-green-600 text-xs mt-1">Daya Tampung</div>
+                    </div>
+                  </div>
+                </div>`;
+          });
+          cardHTML += `</div>
+            <div class="mt-4 text-center">
+              <button class="ai-analysis-btn w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold px-3 py-2 rounded-md hover:from-blue-600 hover:to-indigo-700 shadow-sm hover:shadow-md transition-all text-sm" data-prodi='${JSON.stringify(prodi)}'>
+                <i class="fas fa-robot mr-2"></i>Dapatkan Analisis AI
+              </button>
+            </div>
+          `;
+          return `<div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">${cardHTML}</div>`;
+      };
+
+
       const renderData = () => {
         universityDiv.innerHTML = '';
         noResults.classList.add('hidden');
@@ -253,123 +363,80 @@
         const endIndex = startIndex + pageSize;
         const pageData = filteredData.slice(startIndex, endIndex);
 
-        const uniqueYears = new Set();
-        allProdiData.forEach(prodi => Object.keys(prodi.jumlahPeminat).forEach(year => !isNaN(year) && uniqueYears.add(year)));
-        const sortedYears = [...uniqueYears].sort((a, b) => a - b);
-        const lastYear = sortedYears[sortedYears.length-1];
-
-        const tableContainer = document.createElement('div');
-        tableContainer.className = 'hidden md:block custom-scrollbar overflow-x-auto';
-        const table = document.createElement('table');
-        table.className = 'w-full text-sm text-left text-slate-500';
-        table.innerHTML = `
-          <thead class="text-xs text-slate-700 uppercase bg-slate-100">
-            <tr>
-              <th scope="col" class="px-6 py-3 whitespace-nowrap sticky left-0 bg-slate-100 z-10">PTN</th>
-              <th scope="col" class="px-6 py-3 whitespace-nowrap">Program Studi</th>
-              <th scope="col" class="px-6 py-3">Jenjang</th>
-              ${sortedYears.map(year => `<th colspan="2" class="px-6 py-3 text-center">${year}</th>`).join('')}
-              <th scope="col" class="px-6 py-3 text-center whitespace-nowrap">Peluang (${lastYear-1})</th>
-              <th scope="col" class="px-6 py-3 text-center">Aksi</th>
-            </tr>
-            <tr>
-              <th class="sticky left-0 bg-slate-100 z-10"></th><th></th><th></th>
-              ${sortedYears.map(() => `<th class="px-4 py-3 text-center whitespace-nowrap">Peminat</th><th class="px-4 py-3 text-center whitespace-nowrap">D. Tampung</th>`).join('')}
-              <th></th><th></th>
-            </tr>
-          </thead>`;
-        const tableBody = document.createElement('tbody');
+        // Table structure for desktop
+        const tableHeader = `
+            <thead class="text-xs text-slate-700 uppercase bg-slate-100">
+              <tr>
+                <th scope="col" class="px-6 py-3 whitespace-nowrap sticky-col bg-slate-100">PTN</th>
+                <th scope="col" class="px-6 py-3 whitespace-nowrap">Program Studi</th>
+                <th scope="col" class="px-6 py-3">Jenjang</th>
+                ${sortedYears.map(year => `<th colspan="2" class="px-6 py-3 text-center">${year}</th>`).join('')}
+                <th scope="col" class="px-6 py-3 text-center whitespace-nowrap">Peluang (${sortedYears.length > 1 ? sortedYears[sortedYears.length-2] : ''})</th>
+                <th scope="col" class="px-6 py-3 text-center">Aksi</th>
+              </tr>
+              <tr>
+                <th class="sticky-col bg-slate-100"></th><th></th><th></th>
+                ${sortedYears.map(() => `<th class="px-4 py-3 text-center whitespace-nowrap">Peminat</th><th class="px-4 py-3 text-center whitespace-nowrap">D. Tampung</th>`).join('')}
+                <th></th><th></th>
+              </tr>
+            </thead>`;
+        let tableBodyHTML = '';
         
-        const cardsContainer = document.createElement('div');
-        cardsContainer.className = 'md:hidden space-y-4';
+        // Card container for mobile
+        let cardsHTML = '';
 
         pageData.forEach(([universityName, prodiArray]) => {
-          const ptnHeader = document.createElement('h2');
-          ptnHeader.className = 'md:hidden text-xl font-bold text-slate-800 pb-2 border-b-2 border-blue-500 mb-3';
-          ptnHeader.textContent = universityName;
-          cardsContainer.appendChild(ptnHeader);
+            const universityId = generateUniversityId(universityName);
+            const showAll = prodiArray.length <= PRODI_INITIAL_DISPLAY_LIMIT;
+            const displayProdiArray = showAll ? prodiArray : prodiArray.slice(0, PRODI_INITIAL_DISPLAY_LIMIT);
 
-          prodiArray.forEach((prodi, index) => {
-            // RENDER DESKTOP TABLE ROW
-            const row = tableBody.insertRow();
-            row.className = 'bg-white border-b hover:bg-slate-50';
-            let rowHTML = '';
-            if (index === 0) rowHTML += `<td rowspan="${prodiArray.length}" class="px-6 py-4 font-bold text-slate-900 align-top whitespace-nowrap sticky left-0 bg-white z-0">${universityName}</td>`;
-            rowHTML += `<td class="px-6 py-4 font-medium text-slate-800">${prodi.programStudi}</td>`;
-            rowHTML += `<td class="px-6 py-4 text-center">${prodi.jenjang}</td>`;
-            sortedYears.forEach(year => {
-              const peminat = prodi.jumlahPeminat[year] || 'N/A';
-              const tampung = prodi.dayaTampung[year] || 'N/A';
-              rowHTML += `<td class="px-4 py-4 text-center">
-                              <span class="inline-flex items-center font-medium text-slate-700">
-                                <i class="fas fa-users text-slate-400 mr-2"></i> ${peminat}
-                              </span>
-                          </td>
-                          <td class="px-4 py-4 text-center">
-                              <span class="inline-flex items-center bg-green-100 text-green-800 text-sm font-bold px-2.5 py-1 rounded-full">
-                                <i class="fas fa-door-open text-green-500 mr-2"></i> ${tampung}
-                              </span>
-                          </td>`;
+            // -- Desktop Table Render --
+            displayProdiArray.forEach((prodi, index) => {
+                const ptnCellHTML = index === 0 ? `<td id="ptn-cell-${universityId}" rowspan="${displayProdiArray.length}" class="px-6 py-4 font-bold text-slate-900 align-top whitespace-nowrap sticky-col bg-white">${universityName}</td>` : '';
+                tableBodyHTML += createTableRowHTML(prodi, ptnCellHTML);
             });
-            rowHTML += `<td class="px-6 py-4 text-center font-bold text-lg ${prodi.keketatan === 'N/A' ? 'text-slate-500' : 'text-blue-600'}">${prodi.keketatan}</td>`;
-            rowHTML += `<td class="px-6 py-4 text-center"><button class="ai-analysis-btn bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold px-3 py-1.5 rounded-md hover:from-blue-600 hover:to-indigo-700 shadow-sm hover:shadow-md transition-all text-xs" data-prodi='${JSON.stringify(prodi)}'>✨ Analisis AI</button></td>`;
-            row.innerHTML = rowHTML;
 
-            // RENDER MOBILE CARD
-            const card = document.createElement('div');
-            card.className = 'bg-white p-4 rounded-lg border border-slate-200 shadow-sm';
-            let cardHTML = `
-              <div class="flex justify-between items-start">
-                  <div>
-                      <h3 class="font-bold text-md text-slate-900">${prodi.programStudi}</h3>
-                      <span class="text-xs bg-slate-100 text-slate-600 font-medium px-2 py-0.5 rounded-full">${prodi.jenjang}</span>
-                  </div>
-                  <div class="text-right flex-shrink-0 ml-2">
-                      <div class="font-bold text-lg text-blue-600">${prodi.keketatan}</div>
-                      <div class="text-xs text-slate-500">Peluang</div>
-                  </div>
-              </div>
-              <div class="mt-4 pt-3 border-t border-slate-100 space-y-3">
-            `;
-            sortedYears.forEach(year => {
-                cardHTML += `
-                <div class="space-y-2">
-                    <p class="text-sm font-semibold text-slate-600">${year}</p>
-                    <div class="flex space-x-2">
-                        <div class="flex-1 text-center bg-slate-50 p-2 rounded-lg">
-                           <div class="font-bold text-md text-slate-800 flex items-center justify-center">
-                               <i class="fas fa-users mr-2 text-slate-400"></i>
-                               ${prodi.jumlahPeminat[year] || 'N/A'}
-                           </div>
-                           <div class="text-slate-500 text-xs mt-1">Peminat</div>
-                       </div>
-                       <div class="flex-1 text-center bg-green-50 p-2 rounded-lg">
-                           <div class="font-bold text-md text-green-800 flex items-center justify-center">
-                               <i class="fas fa-door-open mr-2 text-green-500"></i>
-                               ${prodi.dayaTampung[year] || 'N/A'}
-                           </div>
-                           <div class="text-green-600 text-xs mt-1">Daya Tampung</div>
-                       </div>
-                    </div>
-                </div>
-                `;
+            // -- Mobile Card Render --
+            cardsHTML += `<h2 class="md:hidden text-xl font-bold text-slate-800 pb-2 border-b-2 border-blue-500 mb-3">${universityName}</h2>`;
+            cardsHTML += `<div id="mobile-prodi-${universityId}" class="space-y-4">`;
+            displayProdiArray.forEach(prodi => {
+                cardsHTML += createCardHTML(prodi);
             });
-            cardHTML += `</div>
-            <div class="mt-4 text-center">
-                <button class="ai-analysis-btn w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold px-3 py-2 rounded-md hover:from-blue-600 hover:to-indigo-700 shadow-sm hover:shadow-md transition-all text-sm" data-prodi='${JSON.stringify(prodi)}'>
-                    <i class="fas fa-robot mr-2"></i>Dapatkan Analisis AI
-                </button>
-            </div>
-            `;
-            card.innerHTML = cardHTML;
-            cardsContainer.appendChild(card);
-          });
+            cardsHTML += `</div>`;
+
+
+            // -- "Show More" Button Logic --
+            if (!showAll) {
+                const remainingCount = prodiArray.length - PRODI_INITIAL_DISPLAY_LIMIT;
+                // Desktop button (as a new row)
+                tableBodyHTML += `
+                    <tr id="desktop-loader-${universityId}" class="bg-slate-50 hover:bg-slate-100">
+                        <td colspan="${4 + sortedYears.length * 2}" class="text-center py-3">
+                            <button class="show-more-btn text-sm font-semibold text-blue-600 hover:text-blue-800 transition" data-university-id="${universityId}" data-university-name="${universityName}">
+                                Tampilkan ${remainingCount} program studi lainnya <i class="fas fa-chevron-down ml-1"></i>
+                            </button>
+                        </td>
+                    </tr>`;
+                // Mobile button
+                cardsHTML += `
+                    <div id="mobile-loader-${universityId}" class="mt-4 text-center">
+                        <button class="show-more-btn w-full bg-slate-100 text-slate-700 font-semibold px-3 py-2 rounded-md hover:bg-slate-200 transition-all text-sm" data-university-id="${universityId}" data-university-name="${universityName}">
+                           Tampilkan ${remainingCount} program studi lainnya <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                    </div>`;
+            }
         });
-        
-        table.appendChild(tableBody);
-        tableContainer.appendChild(table);
-        universityDiv.appendChild(tableContainer);
-        universityDiv.appendChild(cardsContainer);
+
+        universityDiv.innerHTML = `
+            <div class="hidden md:block custom-scrollbar overflow-x-auto">
+                <table class="w-full text-sm text-left text-slate-500">
+                    ${tableHeader}
+                    <tbody id="table-body-container">${tableBodyHTML}</tbody>
+                </table>
+            </div>
+            <div class="md:hidden space-y-4">${cardsHTML}</div>
+        `;
+
         updatePagination();
       };
       
@@ -387,30 +454,38 @@
         renderData();
       };
       
-      prevBtn.addEventListener('click', () => { if (currentPage > 0) { currentPage--; renderData(); } });
-      nextBtn.addEventListener('click', () => { const totalPages = Math.ceil(filteredData.length / pageSize); if (currentPage < totalPages - 1) { currentPage++; renderData(); } });
+      // --- EVENT LISTENERS ---
+      
+      prevBtn.addEventListener('click', () => { if (currentPage > 0) { currentPage--; renderData(); window.scrollTo(0, 0); } });
+      nextBtn.addEventListener('click', () => { const totalPages = Math.ceil(filteredData.length / pageSize); if (currentPage < totalPages - 1) { currentPage++; renderData(); window.scrollTo(0, 0); } });
       searchInput.addEventListener('input', filterAndRender);
-
-      function showModal() { aiModal.classList.remove('hidden'); setTimeout(() => aiModal.classList.add('modal-enter-active'), 10); }
-      function hideModal() { aiModal.classList.remove('modal-enter-active'); setTimeout(() => aiModal.classList.add('hidden'), 300); }
+      
+      // Modal Controls
+      const showModal = () => { aiModal.classList.remove('hidden'); setTimeout(() => aiModal.classList.add('modal-enter-active'), 10); };
+      const hideModal = () => { aiModal.classList.remove('modal-enter-active'); setTimeout(() => aiModal.classList.add('hidden'), 300); };
       closeModalBtn.addEventListener('click', hideModal);
       aiModal.addEventListener('click', (e) => { if(e.target === aiModal) hideModal(); });
       
+      // Delegated event listener for dynamic content (AI buttons and "Show More")
       universityDiv.addEventListener('click', async (e) => {
-        if (e.target.closest('.ai-analysis-btn')) {
-            const button = e.target.closest('.ai-analysis-btn');
-            const prodiData = JSON.parse(button.dataset.prodi);
+        const aiButton = e.target.closest('.ai-analysis-btn');
+        const showMoreButton = e.target.closest('.show-more-btn');
+
+        if (aiButton) {
+            const prodiData = JSON.parse(aiButton.dataset.prodi);
             showModal();
             modalResult.classList.add('hidden');
             modalLoading.classList.remove('hidden');
             modalTitle.textContent = prodiData.programStudi;
             modalSubtitle.textContent = prodiData.ptn;
+            
             let history = "";
             const years = Object.keys(prodiData.dayaTampung).sort((a,b) => b-a);
             years.forEach(year => { history += `- Tahun ${year}: Peminat ${prodiData.jumlahPeminat[year] || 'N/A'}, Daya Tampung ${prodiData.dayaTampung[year] || 'N/A'}\n`; });
             const prompt = `Anda adalah seorang konsultan ahli masuk perguruan tinggi di Indonesia. Berikan analisis untuk calon mahasiswa yang tertarik pada program studi berikut:\n\n**Program Studi:** ${prodiData.programStudi}\n**Perguruan Tinggi:** ${prodiData.ptn}\n**Jenjang:** ${prodiData.jenjang}\n\n**Data Historis:**\n${history}**Tingkat Peluang (berdasarkan data ${years[1]}):** ${prodiData.keketatan}\n\nBerdasarkan data di atas, berikan analisis dalam format Markdown berikut:\n\n### 1. Analisis Peluang & Tren\nAnalisis singkat (2-3 kalimat) mengenai tingkat persaingan, tren peminat, dan daya tampung.\n\n### 2. Rekomendasi Alternatif\nSarankan 2-3 program studi alternatif di PTN lain yang relevan dengan peluang lebih tinggi.\n\n### 3. Tips & Strategi Lolos\nBerikan 2 tips singkat dan konkret untuk persiapan SNBT yang relevan dengan prodi ini.`;
+            
             try {
-                const text = await callGeminiAPI(prompt, apiKey);
+                const text = await callGeminiAPI(prompt, GEMINI_API_KEY);
                 let html = text.replace(/### (.*)/g, '<h4 class="font-bold text-md text-slate-800 mt-4 mb-2">$1</h4>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
                 aiResponse.innerHTML = html;
             } catch(error) {
@@ -421,19 +496,63 @@
                 modalResult.classList.remove('hidden');
             }
         }
+
+        if (showMoreButton) {
+            const universityId = showMoreButton.dataset.universityId;
+            const universityName = showMoreButton.dataset.universityName;
+            
+            showMoreButton.disabled = true;
+            showMoreButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Memuat...';
+
+            const fullProdiArray = universities[universityName];
+            const remainingProdiArray = fullProdiArray.slice(PRODI_INITIAL_DISPLAY_LIMIT);
+
+            // -- Render and append remaining items --
+            let newTableRowsHTML = '';
+            let newCardsHTML = '';
+            remainingProdiArray.forEach(prodi => {
+                newTableRowsHTML += createTableRowHTML(prodi);
+                newCardsHTML += createCardHTML(prodi);
+            });
+            
+            // Wait a moment for a smoother visual effect (optional)
+            setTimeout(() => {
+                // Append to Desktop Table
+                const desktopLoaderRow = document.getElementById(`desktop-loader-${universityId}`);
+                if (desktopLoaderRow) {
+                    desktopLoaderRow.insertAdjacentHTML('beforebegin', newTableRowsHTML);
+                    desktopLoaderRow.remove();
+                }
+
+                // Append to Mobile Cards
+                const mobileProdiContainer = document.getElementById(`mobile-prodi-${universityId}`);
+                if (mobileProdiContainer) {
+                    mobileProdiContainer.insertAdjacentHTML('beforeend', newCardsHTML);
+                }
+                const mobileLoader = document.getElementById(`mobile-loader-${universityId}`);
+                if (mobileLoader) mobileLoader.remove();
+
+                // Update rowspan for the PTN cell in desktop view
+                const ptnCell = document.getElementById(`ptn-cell-${universityId}`);
+                if (ptnCell) {
+                    ptnCell.rowSpan = fullProdiArray.length;
+                }
+            }, 200); // 200ms delay
+        }
       });
       
+      // --- Gemini API Call ---
       async function callGeminiAPI(prompt, key) {
           const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`;
           const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
           const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
           if (!response.ok) throw new Error(`API call failed with status: ${response.status}`);
           const result = await response.json();
-          if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0]) {
+          if (result.candidates?.[0]?.content?.parts?.[0]) {
             return result.candidates[0].content.parts[0].text;
           } else {
             console.warn('Unexpected API response structure:', result);
-            if (result.promptFeedback && result.promptFeedback.blockReason) throw new Error(`Request blocked: ${result.promptFeedback.blockReason}.`);
+            if (result.promptFeedback?.blockReason) throw new Error(`Request blocked: ${result.promptFeedback.blockReason}.`);
             throw new Error("Gagal mendapatkan respons dari AI.");
           }
       }
