@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daya Tampung & Peluang SNBT (dengan Analisis AI)</title>
+  <title>Daya Tampung & Peluang SNBT (Mobile-Optimized & AI)</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -72,6 +72,15 @@
         border-color: #4A90E2 transparent #4A90E2 transparent;
         animation: spin 1.2s linear infinite;
     }
+    /* Perbaikan untuk tampilan mobile-first */
+    .data-label {
+        display: inline-block; /* Mobile */
+    }
+    @media (min-width: 768px) {
+        .data-label {
+            display: none; /* Desktop */
+        }
+    }
   </style>
 </head>
 
@@ -94,7 +103,6 @@
             <a href="#" class="text-slate-500 hover:bg-slate-100 hover:text-slate-900 px-3 py-2 rounded-md text-sm font-medium">Kontak</a>
           </div>
         </div>
-        <!-- Tombol Hamburger untuk Mobile -->
         <div class="-mr-2 flex md:hidden">
           <button type="button" id="mobile-menu-button" class="bg-white inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-slate-500 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
             <span class="sr-only">Buka menu utama</span>
@@ -104,7 +112,6 @@
         </div>
       </div>
     </nav>
-    <!-- Menu Mobile -->
     <div class="md:hidden hidden" id="mobile-menu">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
         <a href="#" class="bg-blue-50 text-blue-700 block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
@@ -116,31 +123,25 @@
 
   <!-- Konten Utama -->
   <main class="container mx-auto p-4 sm:p-6 lg:p-8">
-    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg space-y-6">
-      
-      <!-- Judul dan Deskripsi -->
+    <div class="bg-white p-4 sm:p-8 rounded-xl shadow-lg space-y-6">
       <div>
           <h1 class="text-2xl sm:text-3xl font-bold text-slate-800">Data Daya Tampung & Peluang Lolos SNBT</h1>
           <p class="mt-2 text-slate-500">Gunakan pencarian untuk menemukan data PTN dan dapatkan <span class="font-semibold text-blue-600">analisis AI</span> untuk strategi Anda.</p>
       </div>
-
-      <!-- Pesan Informasi -->
       <div id="info-alert" class="bg-amber-100 border-l-4 border-amber-500 text-amber-800 p-4 rounded-r-lg flex justify-between items-center" role="alert">
         <p class="text-sm">Data diambil dari laman resmi <a href="https://sidata-ptn-snpmb.bppp.kemdikbud.go.id/ptn_sb.php" class="font-medium underline hover:text-amber-900" title="Kementerian" target="_blank" rel="noopener noreferrer">KEMDIKBUD</a>.</p>
         <button type="button" class="ml-4" aria-label="Close" onclick="document.getElementById('info-alert').style.display='none'"><i class="fas fa-times text-amber-600 hover:text-amber-800"></i></button>
       </div>
-
-      <!-- Kotak Pencarian -->
       <div class="relative"><div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><i class="fas fa-search text-slate-400"></i></div><input type="text" id="searchInput" class="block w-full pl-10 pr-3 py-3 border border-slate-300 rounded-lg bg-white placeholder-slate-500 focus:outline-none focus:placeholder-slate-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition" placeholder="Cari berdasarkan nama PTN..."></div>
       
-      <!-- Kontainer untuk Loading dan Tabel -->
+      <!-- Kontainer Data: Berubah menjadi Card View di mobile -->
       <div id="data-container">
           <div id="loadingIndicator" class="text-center py-10 flex flex-col items-center"><div class="spinner w-8 h-8 rounded-full border-4"></div><p class="mt-3 text-slate-500">Memuat data...</p></div>
-          <div id="universityData" class="custom-scrollbar overflow-x-auto hidden"></div>
+          <!-- universityData akan diisi dengan card atau tabel oleh JS -->
+          <div id="universityData" class="hidden"></div>
           <div id="noResults" class="text-center py-10 hidden"><p class="text-slate-500">Data tidak ditemukan.</p></div>
       </div>
 
-      <!-- Tombol Navigasi -->
       <div id="paginationControls" class="flex justify-between items-center mt-6 hidden">
         <button id="prevBtn" class="inline-flex items-center px-4 py-2 border border-slate-300 text-sm font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 transition"><i class="fas fa-arrow-left mr-2"></i>Sebelumnya</button>
         <span id="pageInfo" class="text-sm text-slate-600"></span>
@@ -157,12 +158,10 @@
         <button id="closeModalBtn" class="text-slate-400 hover:text-slate-600 transition-colors"><i class="fas fa-times fa-lg"></i></button>
       </div>
       <div id="modalContent" class="p-6 space-y-6 overflow-y-auto">
-        <!-- Loading state -->
         <div id="modalLoading" class="text-center py-12">
             <div class="spinner w-10 h-10 rounded-full border-4 mx-auto"></div>
             <p class="mt-4 text-slate-600">Gemini sedang menganalisis data, mohon tunggu...</p>
         </div>
-        <!-- Result state -->
         <div id="modalResult" class="hidden">
             <div class="bg-slate-50 p-4 rounded-lg">
                 <h3 class="font-bold text-lg text-slate-700" id="modalTitle"></h3>
@@ -177,8 +176,6 @@
     </div>
   </div>
 
-
-  <!-- Footer -->
   <footer class="text-center mt-8 pb-6"><p class="text-sm text-slate-500">&copy; 2024 DivaArvian. Didesain ulang & ditenagai oleh AI. All rights reserved.</p></footer>
 
   <script>
@@ -196,7 +193,10 @@
         return ((tampung / peminat) * 100).toFixed(2) + '%';
       };
 
+      // == UPDATED VARIABLES ==
       const url = 'https://divarvian.github.io/daya-tampung/result_data.json';
+      const apiKey = 'AIzaSyDopkAQ6qLc6Oz7MsucwRLzraClSP8qsVg'; 
+      // =======================
 
       const universityDiv = document.getElementById('universityData');
       const searchInput = document.getElementById('searchInput');
@@ -207,22 +207,12 @@
       const nextBtn = document.getElementById('nextBtn');
       const pageInfo = document.getElementById('pageInfo');
       
-      // AI Modal elements
-      const aiModal = document.getElementById('aiModal');
-      const closeModalBtn = document.getElementById('closeModalBtn');
-      const modalContent = document.getElementById('modalContent');
-      const modalLoading = document.getElementById('modalLoading');
-      const modalResult = document.getElementById('modalResult');
-      const modalTitle = document.getElementById('modalTitle');
-      const modalSubtitle = document.getElementById('modalSubtitle');
-      const aiResponse = document.getElementById('aiResponse');
+      const aiModal = document.getElementById('aiModal'), closeModalBtn = document.getElementById('closeModalBtn'),
+            modalLoading = document.getElementById('modalLoading'), modalResult = document.getElementById('modalResult'),
+            modalTitle = document.getElementById('modalTitle'), modalSubtitle = document.getElementById('modalSubtitle'),
+            aiResponse = document.getElementById('aiResponse');
 
-
-      let universities = {};
-      let allProdiData = [];
-      let filteredData = [];
-      let currentPage = 0;
-      const pageSize = 5;
+      let universities = {}, allProdiData = [], filteredData = [], currentPage = 0, pageSize = 5;
 
       fetch(url)
         .then(response => response.ok ? response.json() : Promise.reject(`HTTP error! status: ${response.status}`))
@@ -231,7 +221,6 @@
           data.forEach(item => {
             const universityName = item.namaPTN;
             if (!universities[universityName]) universities[universityName] = [];
-
             Object.entries(item.programStudi).forEach(([jenjang, prodiData]) => {
               Object.entries(prodiData).forEach(([prodiName, tahunData]) => {
                 const prodi = { ptn: universityName, programStudi: prodiName, jenjang, jumlahPeminat: {}, dayaTampung: {} };
@@ -249,7 +238,6 @@
               });
             });
           });
-          
           loadingIndicator.style.display = 'none';
           universityDiv.classList.remove('hidden');
           paginationControls.classList.remove('hidden');
@@ -260,7 +248,8 @@
           loadingIndicator.innerHTML = '<p class="text-red-500">Gagal memuat data. Silakan coba lagi nanti.</p>';
         });
 
-      const renderTable = () => {
+      // == RENDER FUNCTION REBUILT FOR RESPONSIVE VIEW ==
+      const renderData = () => {
         universityDiv.innerHTML = '';
         noResults.classList.add('hidden');
 
@@ -272,68 +261,110 @@
             paginationControls.classList.remove('hidden');
         }
 
-        const table = document.createElement('table');
-        table.className = 'w-full text-sm text-left text-slate-500';
-
-        const uniqueYears = new Set();
-        allProdiData.forEach(prodi => Object.keys(prodi.jumlahPeminat).forEach(year => !isNaN(year) && uniqueYears.add(year)));
-        const sortedYears = [...uniqueYears].sort((a, b) => a - b);
-        const lastYear = sortedYears[sortedYears.length - 1];
-
-        table.innerHTML = `
-          <thead class="text-xs text-slate-700 uppercase bg-slate-100">
-            <tr>
-              <th scope="col" rowspan="2" class="px-6 py-3 whitespace-nowrap sticky left-0 bg-slate-100">Perguruan Tinggi Negeri</th>
-              <th scope="col" rowspan="2" class="px-6 py-3 whitespace-nowrap">Program Studi</th>
-              <th scope="col" rowspan="2" class="px-6 py-3">Jenjang</th>
-              ${sortedYears.map(year => `<th scope="col" colspan="2" class="px-6 py-3 text-center">${year}</th>`).join('')}
-              <th scope="col" rowspan="2" class="px-6 py-3 text-center whitespace-nowrap">Peluang (${lastYear-1})</th>
-              <th scope="col" rowspan="2" class="px-6 py-3 text-center">Aksi</th>
-            </tr>
-            <tr>
-              ${sortedYears.map(() => `<th scope="col" class="px-4 py-3 text-center whitespace-nowrap">Peminat</th><th scope="col" class="px-4 py-3 text-center whitespace-nowrap">D. Tampung</th>`).join('')}
-            </tr>
-          </thead>`;
-
-        const tableBody = document.createElement('tbody');
         const startIndex = currentPage * pageSize;
         const endIndex = startIndex + pageSize;
         const pageData = filteredData.slice(startIndex, endIndex);
 
+        const uniqueYears = new Set();
+        allProdiData.forEach(prodi => Object.keys(prodi.jumlahPeminat).forEach(year => !isNaN(year) && uniqueYears.add(year)));
+        const sortedYears = [...uniqueYears].sort((a, b) => a - b);
+        const lastYear = sortedYears[sortedYears.length-1];
+
+        // Container for desktop table
+        const tableContainer = document.createElement('div');
+        tableContainer.className = 'hidden md:block custom-scrollbar overflow-x-auto';
+        const table = document.createElement('table');
+        table.className = 'w-full text-sm text-left text-slate-500';
+        table.innerHTML = `
+          <thead class="text-xs text-slate-700 uppercase bg-slate-100">
+            <tr>
+              <th scope="col" class="px-6 py-3 whitespace-nowrap sticky left-0 bg-slate-100 z-10">PTN</th>
+              <th scope="col" class="px-6 py-3 whitespace-nowrap">Program Studi</th>
+              <th scope="col" class="px-6 py-3">Jenjang</th>
+              ${sortedYears.map(year => `<th colspan="2" class="px-6 py-3 text-center">${year}</th>`).join('')}
+              <th scope="col" class="px-6 py-3 text-center whitespace-nowrap">Peluang (${lastYear-1})</th>
+              <th scope="col" class="px-6 py-3 text-center">Aksi</th>
+            </tr>
+            <tr>
+              <th class="sticky left-0 bg-slate-100 z-10"></th><th></th><th></th>
+              ${sortedYears.map(() => `<th class="px-4 py-3 text-center whitespace-nowrap">Peminat</th><th class="px-4 py-3 text-center whitespace-nowrap">D. Tampung</th>`).join('')}
+              <th></th><th></th>
+            </tr>
+          </thead>`;
+        const tableBody = document.createElement('tbody');
+        
+        // Container for mobile cards
+        const cardsContainer = document.createElement('div');
+        cardsContainer.className = 'md:hidden space-y-4';
+
         pageData.forEach(([universityName, prodiArray]) => {
+          const ptnHeader = document.createElement('h2');
+          ptnHeader.className = 'md:hidden text-xl font-bold text-slate-800 pb-2 border-b-2 border-blue-500 mb-3';
+          ptnHeader.textContent = universityName;
+          cardsContainer.appendChild(ptnHeader);
+
           prodiArray.forEach((prodi, index) => {
+            // RENDER DESKTOP TABLE ROW
             const row = tableBody.insertRow();
             row.className = 'bg-white border-b hover:bg-slate-50';
-            
             let rowHTML = '';
-            if (index === 0) {
-              rowHTML += `<td rowspan="${prodiArray.length}" class="px-6 py-4 font-bold text-slate-900 align-top whitespace-nowrap sticky left-0 bg-white group-hover:bg-slate-50">${universityName}</td>`;
-            }
+            if (index === 0) rowHTML += `<td rowspan="${prodiArray.length}" class="px-6 py-4 font-bold text-slate-900 align-top whitespace-nowrap sticky left-0 bg-white z-0">${universityName}</td>`;
             rowHTML += `<td class="px-6 py-4 font-medium text-slate-800">${prodi.programStudi}</td>`;
             rowHTML += `<td class="px-6 py-4 text-center">${prodi.jenjang}</td>`;
-            
             sortedYears.forEach(year => {
-              const peminat = prodi.jumlahPeminat[year] || 'N/A';
-              const tampung = prodi.dayaTampung[year] || 'N/A';
-              rowHTML += `<td class="px-4 py-4 text-center">${peminat}</td><td class="px-4 py-4 text-center text-green-600 font-semibold">${tampung}</td>`;
+              rowHTML += `<td class="px-4 py-4 text-center">${prodi.jumlahPeminat[year] || 'N/A'}</td><td class="px-4 py-4 text-center text-green-600 font-semibold">${prodi.dayaTampung[year] || 'N/A'}</td>`;
             });
-
             rowHTML += `<td class="px-6 py-4 text-center font-bold ${prodi.keketatan === 'N/A' ? 'text-slate-500' : 'text-blue-600'}">${prodi.keketatan}</td>`;
-            rowHTML += `
-                <td class="px-6 py-4 text-center">
-                    <button class="ai-analysis-btn bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold px-3 py-1.5 rounded-md hover:from-blue-600 hover:to-indigo-700 shadow-sm hover:shadow-md transition-all text-xs" data-prodi='${JSON.stringify(prodi)}'>
-                        ✨ Analisis AI
-                    </button>
-                </td>`;
+            rowHTML += `<td class="px-6 py-4 text-center"><button class="ai-analysis-btn bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold px-3 py-1.5 rounded-md hover:from-blue-600 hover:to-indigo-700 shadow-sm hover:shadow-md transition-all text-xs" data-prodi='${JSON.stringify(prodi)}'>✨ Analisis AI</button></td>`;
             row.innerHTML = rowHTML;
+
+            // RENDER MOBILE CARD
+            const card = document.createElement('div');
+            card.className = 'bg-white p-4 rounded-lg border border-slate-200 shadow-sm';
+            let cardHTML = `
+              <div class="flex justify-between items-start">
+                  <div>
+                      <h3 class="font-bold text-md text-slate-900">${prodi.programStudi}</h3>
+                      <span class="text-xs bg-slate-100 text-slate-600 font-medium px-2 py-0.5 rounded-full">${prodi.jenjang}</span>
+                  </div>
+                  <div class="text-right">
+                      <div class="font-bold text-blue-600">${prodi.keketatan}</div>
+                      <div class="text-xs text-slate-500">Peluang</div>
+                  </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+            `;
+            sortedYears.forEach(year => {
+                cardHTML += `
+                <div>
+                    <span class="text-slate-500">Peminat ${year}:</span>
+                    <strong class="ml-1 text-slate-800">${prodi.jumlahPeminat[year] || 'N/A'}</strong>
+                </div>
+                <div>
+                    <span class="text-slate-500">Tampung ${year}:</span>
+                    <strong class="ml-1 text-green-600">${prodi.dayaTampung[year] || 'N/A'}</strong>
+                </div>
+                `;
+            });
+            cardHTML += `</div>
+            <div class="mt-4 text-center">
+                <button class="ai-analysis-btn w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold px-3 py-2 rounded-md hover:from-blue-600 hover:to-indigo-700 shadow-sm hover:shadow-md transition-all text-sm" data-prodi='${JSON.stringify(prodi)}'>
+                    <i class="fas fa-robot mr-2"></i>Dapatkan Analisis AI
+                </button>
+            </div>
+            `;
+            card.innerHTML = cardHTML;
+            cardsContainer.appendChild(card);
           });
         });
         
         table.appendChild(tableBody);
-        universityDiv.appendChild(table);
+        tableContainer.appendChild(table);
+        universityDiv.appendChild(tableContainer);
+        universityDiv.appendChild(cardsContainer);
         updatePagination();
       };
-
+      
       const updatePagination = () => {
         const totalPages = Math.ceil(filteredData.length / pageSize);
         pageInfo.textContent = `Halaman ${currentPage + 1} dari ${totalPages || 1}`;
@@ -345,81 +376,38 @@
         const searchTerm = searchInput.value.toLowerCase();
         filteredData = Object.entries(universities).filter(([universityName]) => universityName.toLowerCase().includes(searchTerm));
         currentPage = 0;
-        renderTable();
+        renderData();
       };
       
-      prevBtn.addEventListener('click', () => { if (currentPage > 0) { currentPage--; renderTable(); } });
-      nextBtn.addEventListener('click', () => { const totalPages = Math.ceil(filteredData.length / pageSize); if (currentPage < totalPages - 1) { currentPage++; renderTable(); } });
+      prevBtn.addEventListener('click', () => { if (currentPage > 0) { currentPage--; renderData(); } });
+      nextBtn.addEventListener('click', () => { const totalPages = Math.ceil(filteredData.length / pageSize); if (currentPage < totalPages - 1) { currentPage++; renderData(); } });
       searchInput.addEventListener('input', filterAndRender);
 
-      // AI Modal Logic
-      function showModal() {
-        aiModal.classList.remove('hidden');
-        setTimeout(() => aiModal.classList.add('modal-enter-active'), 10);
-      }
-
-      function hideModal() {
-        aiModal.classList.remove('modal-enter-active');
-        setTimeout(() => aiModal.classList.add('hidden'), 300);
-      }
-      
+      function showModal() { aiModal.classList.remove('hidden'); setTimeout(() => aiModal.classList.add('modal-enter-active'), 10); }
+      function hideModal() { aiModal.classList.remove('modal-enter-active'); setTimeout(() => aiModal.classList.add('hidden'), 300); }
       closeModalBtn.addEventListener('click', hideModal);
       aiModal.addEventListener('click', (e) => { if(e.target === aiModal) hideModal(); });
       
       universityDiv.addEventListener('click', async (e) => {
-        if (e.target.classList.contains('ai-analysis-btn')) {
-            const prodiData = JSON.parse(e.target.dataset.prodi);
-            
+        if (e.target.closest('.ai-analysis-btn')) {
+            const button = e.target.closest('.ai-analysis-btn');
+            const prodiData = JSON.parse(button.dataset.prodi);
             showModal();
             modalResult.classList.add('hidden');
             modalLoading.classList.remove('hidden');
-            
             modalTitle.textContent = prodiData.programStudi;
             modalSubtitle.textContent = prodiData.ptn;
-
-            // Prepare data for prompt
             let history = "";
             const years = Object.keys(prodiData.dayaTampung).sort((a,b) => b-a);
-            years.forEach(year => {
-                history += `- Tahun ${year}: Peminat ${prodiData.jumlahPeminat[year] || 'N/A'}, Daya Tampung ${prodiData.dayaTampung[year] || 'N/A'}\n`;
-            });
-
-            const prompt = `
-Anda adalah seorang konsultan ahli masuk perguruan tinggi di Indonesia. Berikan analisis untuk calon mahasiswa yang tertarik pada program studi berikut:
-
-**Program Studi:** ${prodiData.programStudi}
-**Perguruan Tinggi:** ${prodiData.ptn}
-**Jenjang:** ${prodiData.jenjang}
-
-**Data Historis:**
-${history}
-**Tingkat Peluang (berdasarkan data ${years[1]}):** ${prodiData.keketatan}
-
-Berdasarkan data di atas, berikan analisis dalam format berikut:
-
-### 1. Analisis Peluang & Tren
-Analisis singkat (2-3 kalimat) mengenai tingkat persaingan program studi ini. Jelaskan tren peminat dan daya tampung dalam beberapa tahun terakhir dan apa artinya bagi calon pendaftar tahun ini.
-
-### 2. Rekomendasi Alternatif
-Sarankan 2-3 program studi alternatif di PTN lain yang relevan (bidang ilmu sejenis). Prioritaskan yang memiliki peluang lebih tinggi (keketatan di atas 5% jika memungkinkan) atau reputasi baik. Sebutkan nama PTN, nama Prodi, dan alasan singkat (misal: 'Peluang lebih tinggi', 'Fokus riset kuat di bidang X').
-
-### 3. Tips & Strategi Lolos
-Berikan 2 tips singkat dan konkret untuk persiapan SNBT bagi calon mahasiswa yang menargetkan prodi ini. Fokus pada subtes yang paling relevan. Contoh: 'Fokus pada subtes Penalaran Matematika karena sangat relevan untuk prodi Teknik.'
-
-Gunakan bahasa yang memotivasi dan mudah dipahami. Format jawaban menggunakan Markdown.
-            `;
-            
+            years.forEach(year => { history += `- Tahun ${year}: Peminat ${prodiData.jumlahPeminat[year] || 'N/A'}, Daya Tampung ${prodiData.dayaTampung[year] || 'N/A'}\n`; });
+            const prompt = `Anda adalah seorang konsultan ahli masuk perguruan tinggi di Indonesia. Berikan analisis untuk calon mahasiswa yang tertarik pada program studi berikut:\n\n**Program Studi:** ${prodiData.programStudi}\n**Perguruan Tinggi:** ${prodiData.ptn}\n**Jenjang:** ${prodiData.jenjang}\n\n**Data Historis:**\n${history}**Tingkat Peluang (berdasarkan data ${years[1]}):** ${prodiData.keketatan}\n\nBerdasarkan data di atas, berikan analisis dalam format Markdown berikut:\n\n### 1. Analisis Peluang & Tren\nAnalisis singkat (2-3 kalimat) mengenai tingkat persaingan, tren peminat, dan daya tampung.\n\n### 2. Rekomendasi Alternatif\nSarankan 2-3 program studi alternatif di PTN lain yang relevan dengan peluang lebih tinggi.\n\n### 3. Tips & Strategi Lolos\nBerikan 2 tips singkat dan konkret untuk persiapan SNBT yang relevan dengan prodi ini.`;
             try {
-                const text = await callGeminiAPI(prompt);
-                // Basic Markdown to HTML
-                let html = text
-                    .replace(/### (.*)/g, '<h4 class="font-bold text-md text-slate-800 mt-4 mb-2">$1</h4>')
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/\n/g, '<br>');
+                const text = await callGeminiAPI(prompt, apiKey);
+                let html = text.replace(/### (.*)/g, '<h4 class="font-bold text-md text-slate-800 mt-4 mb-2">$1</h4>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
                 aiResponse.innerHTML = html;
             } catch(error) {
                 console.error("Gemini API Error:", error);
-                aiResponse.innerHTML = `<p class="text-red-500">Maaf, terjadi kesalahan saat menghubungi AI. Silakan coba lagi beberapa saat lagi.</p>`;
+                aiResponse.innerHTML = `<p class="text-red-500">Maaf, terjadi kesalahan saat menghubungi AI. Silakan coba lagi.</p>`;
             } finally {
                 modalLoading.classList.add('hidden');
                 modalResult.classList.remove('hidden');
@@ -427,35 +415,17 @@ Gunakan bahasa yang memotivasi dan mudah dipahami. Format jawaban menggunakan Ma
         }
       });
       
-      async function callGeminiAPI(prompt) {
-          const apiKey = "AIzaSyDopkAQ6qLc6Oz7MsucwRLzraClSP8qsVg"; // API Key is handled by the environment
-          const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-          
-          const payload = {
-              contents: [{ role: "user", parts: [{ text: prompt }] }]
-          };
-
-          const response = await fetch(apiUrl, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload)
-          });
-
-          if (!response.ok) {
-              throw new Error(`API call failed with status: ${response.status}`);
-          }
-
+      async function callGeminiAPI(prompt, key) {
+          const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`;
+          const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+          const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          if (!response.ok) throw new Error(`API call failed with status: ${response.status}`);
           const result = await response.json();
-
-          if (result.candidates && result.candidates.length > 0 &&
-              result.candidates[0].content && result.candidates[0].content.parts &&
-              result.candidates[0].content.parts.length > 0) {
+          if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0]) {
             return result.candidates[0].content.parts[0].text;
           } else {
             console.warn('Unexpected API response structure:', result);
-            if (result.promptFeedback && result.promptFeedback.blockReason) {
-                throw new Error(`Request blocked: ${result.promptFeedback.blockReason}. Details: ${JSON.stringify(result.promptFeedback.safetyRatings)}`);
-            }
+            if (result.promptFeedback && result.promptFeedback.blockReason) throw new Error(`Request blocked: ${result.promptFeedback.blockReason}.`);
             throw new Error("Gagal mendapatkan respons dari AI.");
           }
       }
